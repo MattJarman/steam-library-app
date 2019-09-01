@@ -1,0 +1,234 @@
+html, body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+html {
+    /* background: rgba(0, 0, 0, 0) linear-gradient(to right bottom, #00cfc1, #1DB954) repeat scroll 0% 0%; */
+    background: #121212;
+    background-attachment: fixed;
+    
+}
+
+body {
+    color: #fff;
+}
+
+.section {
+    padding: 3rem .5rem !important;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav {
+    background: #272727;
+}
+
+.navbar-item, .navbar-link {
+    color: #fff;
+}
+
+.navbar-burger span {
+    background-color: white;
+}
+
+.navbar-burger:hover {
+    background-color: transparent;
+}
+
+#nav-menu, .navbar-menu {
+    background: transparent;
+    padding-bottom: 0;
+}
+
+.navbar-item:hover, .navbar-link:hover {
+    background-color: rgba( 0, 0, 0, 0.1 ) !important;
+    color: #fff !important;
+}
+
+.navbar-dropdown {
+    background-color: rgba(43, 43, 43, .8);
+    border-top: 2px solid rgba( 0, 0, 0, 0.1 );
+}
+
+.navbar-item.has-dropdown:hover .navbar-link {
+    background-color: rgba( 0, 0, 0, 0.1 );
+}
+
+.navbar-divider {
+    background-color: rgba( 0, 0, 0, 0.1 );
+}
+
+.media-content {
+    overflow: hidden;
+}
+
+.avatar {
+    width: 32px;
+    max-height: 32px !important;
+}
+
+.username {
+    padding-left: .5rem;
+}
+
+.user-nav {
+    display: flex;
+    align-items: center;
+}
+
+.games {
+    width: 100%;
+}
+
+/*
+    Add padding and make pretty
+*/
+@media screen and (max-width: 1023px) {
+    #nav-menu {
+        background: #272727;
+    }
+
+    .navbar-menu {
+        width: 60%;
+        height: 100%;
+    
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+    
+        transform: translateX(-100%);
+        transition: all .2s ease-in-out;
+        pointer-events: none;
+    }
+    
+    .navbar-menu.is-active {
+        transform: none;
+        pointer-events: auto;
+    }
+
+    .navbar-dropdown {
+        background: #3d3d3d;
+    }
+
+    .ordered-mobile {
+        display: flex !important;
+        flex-flow: column;
+    }
+
+    .ordered-mobile .navbar-end {
+        order: 1;
+    }
+
+    .ordered-mobile .navbar-start {
+        order: 2;
+    }
+
+    .navbar-item {
+        /* padding-bottom: 1em; */
+    }
+}
+
+/**
+* Need to change so that fonts for 
+* game title and hrs played is more
+* consistent and well-sized
+*/
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.game-title {
+    font-size: 13px;
+}
+
+.game-logo {
+    max-width: 35%;
+    width: 184px;
+    margin-right: 6px;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-logo img {
+    width: 100%;
+    max-height: 69px;
+    /* border-radius: 3px; */ /* Still undecided if I prefer rounded borders or not */
+}
+
+.game-column {
+    padding: 0 0 .5rem 0;
+}
+
+.game-item {
+    /* min-height: 69px; */  /* Don't need until more elements are added to game item */
+    border-radius: 0px; /* Still undecided if I prefer rounded borders or not */
+    height: auto;
+    padding: 8px;
+    background-color: rgba( 87, 84, 84, .4);
+}
+
+.game-name {
+    color: #fff;
+    font-size: 1rem;
+    margin-bottom: 0 !important;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.game-playtime {
+    color: #bababa;
+    font-size: .75rem;
+}
+
+.info {
+    /* border-radius: 6px; */ /* Still undecided if I prefer rounded borders or not */
+    width: 100%;
+}
+
+.game-info {
+    padding: 8px;
+    height: auto;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 50px;
+}
+
+.select select, .sort-dropdown {
+    color: white;
+    background-color: rgba(40, 40, 40, .35);
+    border: 0px solid transparent;
+}
+
+.select select option, .sort-dropdown option {
+    color: black;
+    background: white;
+}
+
+#filter-input {
+    border-radius: 4px;
+    width: 8rem;
+}
+
+.title {
+    color: #fff !important;
+}
+
+.subtitle{
+    color: #fff;
+}
+
+.select select, .sort-dropdown {
+    background: rgba( 87, 84, 84, .2);
+}
+
+.level-item {
+    justify-content: flex-start !important;
+}

@@ -1,0 +1,37 @@
+extends layout
+block content
+    section(class='section')
+        div(class='container')
+            div(class='game-container')
+                nav(class='level')
+                    div(class='level-left')
+                        div(class='level-item has-text-centered')
+                            h1(class='title') Library
+                    if games
+                        div(class='level-right')
+                            div(class='level-item')
+                                input( id='filter-input' class='input is-small' type='search' placeholder='Filter')
+                            div(class='level-item has-text-centered')
+                                    h1(class='subtitle is-6') Sort By
+                                    div(class='select is-small sort-dropdown' style='margin-left: .5rem;')
+                                        select(id='sort-by')
+                                            option(value='pl-a') Playtime &uarr;
+                                            option(value='pl-d') Playtime &darr;
+                                            option(value='m-a') OpenCritic &uarr; (!)
+                                            option(value='m-d') OpenCritic &darr; (!)
+                                            option(value='hltb') HLTB
+                if games
+                    div(id='game-list' class='games')
+                        each game in games
+                            div(class='game-column column' id=game.appid)
+                                div(class='box game-item')
+                                    art(class='media')
+                                        figure(class='media-left game-logo')
+                                            img(class='center' src=game.imgURL)
+                                        div(class='media-content')
+                                            p(class='game-name')=game.name
+                                            p(class='game-playtime')= Math.round(game.playtime / 60) + ' hrs on record'
+                else 
+                    h1(class='subtitle' style='width: 100%;') There was an issue retrieving your games.
+    script(id='game-data' type='text/javascript')
+        | var games = !{JSON.stringify(games)}

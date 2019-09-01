@@ -1,0 +1,69 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1')
+        title Backlogger
+        link(rel='stylesheet' type="text/css" href="./css/bulma.min.css")
+        link(rel='stylesheet' type="text/css" href="./css/styles.css")
+        link(href="https://fonts.googleapis.com/css?family=Open+Sans:300,400&display=swap" rel="stylesheet") 
+        script(src='./js/jquery.min.js')
+        script(src='./js/library.js')
+        script(defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js")
+        script.
+            $('html').addClass('hidden');
+            var burger;
+            $('document').ready(function() {
+                $('html').removeClass('hidden');
+
+                burger = document.querySelector('.burger');
+                nav = document.querySelector('#' + burger.dataset.target);
+                burger.addEventListener('click', function() {
+                    burger.classList.toggle('is-active');
+                    nav.classList.toggle('is-active')
+                });
+
+                nav.onclick = function(e) {
+                    e.stopPropagation();
+                }
+
+                burger.onclick = function(e) {
+                    e.stopPropagation();
+                }
+
+                document.onclick = function(e) {
+                    $('#nav-menu').removeClass('is-active');
+                    $('.burger').removeClass('is-active');
+                }
+            });
+
+            
+    body
+        nav(id='navbar' class='navbar nav' role='navigation' aria-label='main navigation')
+            div(class='navbar-brand')
+                a(class='navbar-item is-large logo')
+                    img(src='./images/logo-white.png' height='100' width='80')
+                a(role='button' class='navbar-burger burger' aria-label='menu' aria-expanded='false' data-target='nav-menu')
+                    span(hidden='true')
+                    span(hidden='true')
+                    span(hidden='true')
+            div(id='nav-menu' class='navbar-menu ordered-mobile')
+                div(class='navbar-start')
+                    a(class='navbar-item' href='/backlog') Backlog
+                    a(class='navbar-item' href='/profile') Profile
+                    a(class='navbar-item' href='/library') Library
+                    div(class='navbar-item has-dropdown is-hoverable')
+                        a(class='navbar-link') More 
+                        div(class='navbar-dropdown')   
+                            a(class='navbar-item') About 
+                            a(class='navbar-item') Contact 
+                            hr(class='navbar-divider')
+                            a(class='navbar-item') Report an Issue
+                div(class='navbar-end')
+                    if(user)
+                        a(class='navbar-item user-nav' href='/profile')
+                            img(class='image avatar' src=user._json.avatarmedium)
+                            p(class='username')=user.displayName
+                    else
+                        a(class='navbar-item' href='/auth/steam/return') Log In
+        block content

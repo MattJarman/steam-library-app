@@ -1,0 +1,30 @@
+{
+  "name": "steam-library-app",
+  "version": "1.0.0",
+  "description": "Test for steam web api.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^3.1.0",
+    "body-parser": "^1.19.0",
+    "bulma": "^0.7.5",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "express-session": "^1.16.2",
+    "jquery": "^3.4.1",
+    "mongoose": "^5.6.11",
+    "morgan": "^1.9.1",
+    "passport": "^0.4.0",
+    "passport-steam": "^1.0.11",
+    "path": "^0.12.7",
+    "pug": "^2.0.4",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
