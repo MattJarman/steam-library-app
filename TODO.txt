@@ -1,5 +1,0 @@
-Library view
-	- Pagination
-	- Filter by categories
-	- Show metacritic info
-	- Show how long to beat info
