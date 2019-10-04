@@ -24,7 +24,7 @@ router.get('/steam/return',
     function(req, res) {
         var redirectUrl = req.session.redirect || '/';
         delete req.session.redirect;
-        
+
         res.redirect(redirectUrl);
     });
   

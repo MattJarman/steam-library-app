@@ -3,12 +3,11 @@ html
     head
         meta(charset='utf-8')
         meta(name='viewport' content='width=device-width, initial-scale=1')
-        title Backlogger
+        title Backlog
         link(rel='stylesheet' type="text/css" href="./css/bulma.min.css")
         link(rel='stylesheet' type="text/css" href="./css/styles.css")
         link(href="https://fonts.googleapis.com/css?family=Open+Sans:300,400&display=swap" rel="stylesheet") 
         script(src='./js/jquery.min.js')
-        script(src='./js/library.js')
         script(defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js")
         script.
             $('html').addClass('hidden');
@@ -35,6 +34,10 @@ html
                     $('#nav-menu').removeClass('is-active');
                     $('.burger').removeClass('is-active');
                 }
+
+                $('.navbar-link').on('click', function() {
+                    $(this.parentElement).toggleClass('is-active');
+                });
             });
 
             
@@ -42,28 +45,73 @@ html
         nav(id='navbar' class='navbar nav' role='navigation' aria-label='main navigation')
             div(class='navbar-brand')
                 a(class='navbar-item is-large logo')
-                    img(src='./images/logo-white.png' height='100' width='80')
+                    img(src='./images/backlog-logo-white.svg' height='300' width='25')
                 a(role='button' class='navbar-burger burger' aria-label='menu' aria-expanded='false' data-target='nav-menu')
                     span(hidden='true')
                     span(hidden='true')
                     span(hidden='true')
             div(id='nav-menu' class='navbar-menu ordered-mobile')
                 div(class='navbar-start')
-                    a(class='navbar-item' href='/backlog') Backlog
-                    a(class='navbar-item' href='/profile') Profile
-                    a(class='navbar-item' href='/library') Library
+                    a(class='navbar-item' href='/backlog')
+                        div(class='nav-item-text')
+                            span(class='icon nav-icon')
+                                i(class='fas fa-list-ul')
+                            span Backlog
+                    a(class='navbar-item' href='/library')
+                        div(class='nav-item-text')
+                            span(class='icon nav-icon')
+                                i(class='fas fa-book')
+                            span Library
+                    a(class='navbar-item' href='/profile')
+                        div(class='nav-item-text')
+                            span(class='icon nav-icon')
+                                i(class='fas fa-user')
+                            span Profile
                     div(class='navbar-item has-dropdown is-hoverable')
-                        a(class='navbar-link') More 
+                        a(class='navbar-link') 
+                            div(class='nav-item-text')
+                                span(class='icon nav-icon')
+                                    i(class='fas fa-ellipsis-h')
+                                span More
                         div(class='navbar-dropdown')   
-                            a(class='navbar-item') About 
-                            a(class='navbar-item') Contact 
+                            a(class='navbar-item')
+                                div(class='nav-item-text')
+                                    span(class='icon')
+                                        i(class='fas fa-info-circle')
+                                    span About
+                            a(class='navbar-item')
+                                div(class='nav-item-text')
+                                    span(class='icon')
+                                        i(class='far fa-envelope')
+                                    span Contact
                             hr(class='navbar-divider')
-                            a(class='navbar-item') Report an Issue
+                            a(class='navbar-item') 
+                                div(class='nav-item-text')
+                                    span(class='icon')
+                                        i(class='fas fa-exclamation-triangle')
+                                    span Report an Issue
                 div(class='navbar-end')
                     if(user)
-                        a(class='navbar-item user-nav' href='/profile')
-                            img(class='image avatar' src=user._json.avatarmedium)
-                            p(class='username')=user.displayName
+                        div(class='navbar-item has-dropdown is-hoverable')
+                            a(class='navbar-link user-nav')
+                                img(class='image avatar' src=user.avatarMedium)
+                                p(class='username')=user.username
+                            div(class='navbar-dropdown')   
+                                a(class='navbar-item')
+                                    div(class='nav-item-text')
+                                        span(class='icon')
+                                            i(class='fas fa-cog')
+                                        span Settings
+                                hr(class='navbar-divider')
+                                a(class='navbar-item' href='/logout')
+                                    div(class='nav-item-text')
+                                        span(class='icon')
+                                            i(class='fas fa-sign-out-alt')
+                                        span Sign Out
                     else
-                        a(class='navbar-item' href='/auth/steam/return') Log In
+                        a(class='navbar-item' href='/auth/steam/return')
+                            div(class='nav-item-text')
+                                span(class='icon')
+                                    i(class='fas fa-sign-in-alt')
+                                span Sign In
         block content

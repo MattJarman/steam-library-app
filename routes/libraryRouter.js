@@ -20,90 +20,112 @@ router.get('/', checkAuthenticated, function(req, res) {
     if(req.session)
         req.session.redirect = req.originalUrl;
 
-    res.redirect('/library/' + req.user.id);
+    res.redirect('/library/' + req.user.steamid);
 });
 
-router.get('/:id', function(req, res) {
+router.get('/:id', async function(req, res) {
     const id = req.params.id;
 
     if(req.session)
         req.session.redirect = req.originalUrl;
 
-    var games = [];
+    var games;
 
+    // Load games from session if they exist
+    if(req.session.games) {
+        games = req.session.games;
+    } else {
+        games = await getUserGames(id);
+        req.session.games = games;
+    }
+    
+    if(games !== null) {
+        res.render('library', {
+            games: games,
+            user: req.user
+        });
+    } else {
+        res.render('library', {
+            user: req.user
+        });
+    }
+});
+
+async function getUserGames(steamid) {
+    var games = [];
     // Make a request to steam api to grab information
     // Create steam api url for all games in user library
     var url = 'https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=' + steam_api_key 
-        + '&steamid=' + req.params.id + '&include_appinfo=1&include_played_free_games=1';
+        + '&steamid=' + steamid + '&include_appinfo=1&include_played_free_games=1';
+    
+    return new Promise(function(resolve, reject) {
+        // Access steam api data using url
+        request.get(url,  function(err, steamRes, data) {
 
-    // Access steam api data using url
-    request.get(url, function(err, steamRes, data) {
-        const obj = JSON.parse(data);
+            if(err) reject(err);
 
-        // Check if user exists
-        // Need to check for when an empty object is returned
-        if(steamRes.statusCode !== 500) {
-            // Check if any games were returned
-            if(obj.response.games !== null && obj.response.games !== undefined) { 
-                
-                var userGames = obj.response.games;
+            // Check if user exists
+            // Need to check for when an empty object is returned
+            if(steamRes.statusCode !== 500) {
+                // Parse the data
+                const obj = JSON.parse(data);
 
-                // Create array of appids
-                var apps = [];
+                // Check if any games were returned
+                if(obj.response.games !== null && obj.response.games !== undefined) { 
+                    
+                    var userGames = obj.response.games;
 
-                for(var i = 0; i < userGames.length; i++) {
+                    // Create array of appids
+                    var apps = [];
 
-                    // Create game image url
-                    var imgURL = 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/' 
-                        + userGames[i].appid 
-                        + '/'
-                        + userGames[i].img_logo_url
-                        + '.jpg';
+                    for(var i = 0; i < userGames.length; i++) {
 
-                    games.push({
-                        gameInfo: userGames[i].appid,
-                        name: userGames[i].name,
-                        appid: userGames[i].appid,
-                        playtime: userGames[i].playtime_forever,
-                        imgURL: imgURL
-                    });
+                        // Create game image url
+                        var imgURL = 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/' 
+                            + userGames[i].appid 
+                            + '/'
+                            + userGames[i].img_logo_url
+                            + '.jpg';
 
-                    // Used for querying database
-                    apps.push(userGames[i].appid);
-                }
+                        games.push({
+                            gameInfo: userGames[i].appid,
+                            name: userGames[i].name,
+                            appid: userGames[i].appid,
+                            playtime: userGames[i].playtime_forever,
+                            imgURL: imgURL
+                        });
 
-                var index, appid;
-
-                Game.find({ '_id': { $in: apps } })
-                .exec(function(err, docs) {
-                    for(var i = 0; i < docs.length; i++) {
-                        appid = docs[i]._id;
-
-                        index = games.findIndex(i => i.appid === appid);
-
-                        if(index > -1)
-                            games[index].gameInfo = docs[i];
+                        // Used for querying database
+                        apps.push(userGames[i].appid);
                     }
 
-                    // Sort games by playtime
-                    games.sort(compare);
+                    var index, appid;
 
-                    // Render the view
-                    res.render('library', {
-                        games: games,
-                        user: req.user
-                    }); 
-                });
+                    Game.find({ '_id': { $in: apps } })
+                    .exec(function(err, docs) {
+                        for(var i = 0; i < docs.length; i++) {
+                            appid = docs[i]._id;
+
+                            index = games.findIndex(i => i.appid === appid);
+
+                            if(index > -1)
+                                games[index].gameInfo = docs[i];
+                        }
+
+                        // Sort games by playtime
+                        games.sort(compare);
+
+                        resolve(games);
+                    });
+                } else {
+                    resolve(null);
+                }
             } else {
-                // Render the view
-                res.render('library', {
-                    user: req.user
-                }); 
+                resolve(null);
             }
-        }
+        });
     });
-});
-
+}
 
 function checkAuthenticated(req, res, next) {
     if (req.isAuthenticated()) { return next(); }

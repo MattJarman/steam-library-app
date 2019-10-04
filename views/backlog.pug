@@ -2,4 +2,42 @@ extends layout
 block content
     section(class='section')
         div(class='container')
-            h1(class='title') Backlog
+            div(class='game-container')
+                nav(class='level')
+                    div(class='level-left')
+                        div(class='level-item has-text-centered')
+                            h1(class='title') Backlog
+                    if user
+                        div(class='level-right')
+                            div(class='level-item')
+                                a(id='add-game-button' class='button')
+                                    i(class='fas fa-plus')
+                                    p(style='padding-left: .5em;') Add Game
+                                div(class='level-item has-text-centered')
+                if backlog
+                    div(id='game-list' class='games')
+                        each game in backlog
+                            div(class='game-column column' id=game.appid)
+                                div(class='box game-item')
+                                    art(class='media')
+                                        figure(class='media-left game-logo')
+                                            img(class='center' src=game.headerImage)
+                                        div(class='media-content')
+                                            p(class='game-name')=game.name
+            div(id='add-game-modal' class='modal')
+                div(class='modal-background')
+                div(class='modal-card')
+                    form(action='/backlog/add-games' method='post')
+                        header(class='modal-card-head')
+                            p(class='modal-card-title') Add to Backlog
+                        section(id='modal-search-section' class='modal-card-body')
+                            input(id='game-search-input' class='input' type='text' placeholder='Search' autocomplete='off')
+                            ul(id='search-results')
+                        section(class='modal-card-body')
+                            hr(class='modal-break')
+                            div(id='search-tags' class='tags')
+                        footer(class='modal-card-foot')
+                            button(id='add-game-submit' type='submit' value='submit' class='button') Add Games
+                            button(id='add-game-cancel' type='button' class='button') Cancel
+                button(class='modal-close is-large' aria-label='close')
+    script(src='./js/backlog.js')

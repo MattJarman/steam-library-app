@@ -4,14 +4,14 @@ const Schema = mongoose.Schema;
 
 // Create user schema (will be used later for registering accounts)
 const userSchema = new Schema({
-    _id: Number,
-    backlog: [{
-        gameInfo: {type: Number, ref: 'Game'},
-        name: String,
-        appid: Number,
-        playtime: Number,
-        imgURL: String
-    }],
+    steamid: String,
+    username: String,
+    profileUrl: String,
+    avatarMedium: String,
+    avatarFull: String,
+    backlog: [
+        {type: Number, ref: 'Game'}
+    ],
     updated: { type: Date, default: Date.now }
 });
 

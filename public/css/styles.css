@@ -3,10 +3,8 @@ html, body {
 }
 
 html {
-    /* background: rgba(0, 0, 0, 0) linear-gradient(to right bottom, #00cfc1, #1DB954) repeat scroll 0% 0%; */
-    background: #121212;
+    background: radial-gradient(ellipse farthest-corner at 50% 0%, #3c4047 0%, #3c4047 50%, #33363d 100%);
     background-attachment: fixed;
-    
 }
 
 body {
@@ -24,11 +22,20 @@ body {
 }
 
 .nav {
-    background: #272727;
+    background: #2c2f34;
+    box-shadow: 0px 0px 30px rgba(0,0,0,0.2);
 }
 
 .navbar-item, .navbar-link {
     color: #fff;
+}
+
+.icon {
+    margin-right: 1rem;
+}
+
+.nav-icon {
+    display: none;
 }
 
 .navbar-burger span {
@@ -49,8 +56,17 @@ body {
     color: #fff !important;
 }
 
+a.navbar-item:focus {
+    background-color: rgba( 0, 0, 0, 0.1 ) !important;
+    color: #fff !important;
+}
+
+.navbar-item.has-dropdown.is-active .navbar-link {
+    background-color: rgba( 0, 0, 0, 0.1 ) !important;
+}
+
 .navbar-dropdown {
-    background-color: rgba(43, 43, 43, .8);
+    background-color: #25272b;
     border-top: 2px solid rgba( 0, 0, 0, 0.1 );
 }
 
@@ -58,8 +74,17 @@ body {
     background-color: rgba( 0, 0, 0, 0.1 );
 }
 
+.navbar-link:not(.is-arrowless)::after {
+    border-color: #3c91e6;
+}
+
 .navbar-divider {
     background-color: rgba( 0, 0, 0, 0.1 );
+}
+
+.nav-item-text {
+    display: flex;
+    align-items: center;
 }
 
 .media-content {
@@ -89,7 +114,8 @@ body {
 */
 @media screen and (max-width: 1023px) {
     #nav-menu {
-        background: #272727;
+        background: #2c2f34;
+        box-shadow: 3px 0px 15px rgba(0,0,0,0.2);
     }
 
     .navbar-menu {
@@ -104,6 +130,7 @@ body {
         transform: translateX(-100%);
         transition: all .2s ease-in-out;
         pointer-events: none;
+        padding: 0;
     }
     
     .navbar-menu.is-active {
@@ -112,8 +139,16 @@ body {
     }
 
     .navbar-dropdown {
-        background: #3d3d3d;
+        background: #25272b;
+        padding-top: 0;
     }
+
+    .navbar-item.has-dropdown .navbar-dropdown {
+        display: none;
+      }
+      .navbar-item.has-dropdown.is-active .navbar-dropdown {
+        display: block;
+      }
 
     .ordered-mobile {
         display: flex !important;
@@ -128,16 +163,27 @@ body {
         order: 2;
     }
 
+    .nav-icon {
+        display: inline-flex;
+    }
+
     .navbar-item {
         /* padding-bottom: 1em; */
     }
-}
 
-/**
-* Need to change so that fonts for 
-* game title and hrs played is more
-* consistent and well-sized
-*/
+    #search-results li {
+        font-size: 11px !important;
+        padding: 1em 1em 1em .5em !important;
+    }
+
+    .item-name {
+        max-width: 200px !important;
+    }
+
+    .navbar-link.user-nav {
+        padding-top: .75em;
+    }
+}
 
 .game-container {
     display: flex;
@@ -158,8 +204,10 @@ body {
 
 .game-logo img {
     width: 100%;
-    max-height: 69px;
-    /* border-radius: 3px; */ /* Still undecided if I prefer rounded borders or not */
+}
+
+.compact {
+    width: 60px;
 }
 
 .game-column {
@@ -170,8 +218,9 @@ body {
     /* min-height: 69px; */  /* Don't need until more elements are added to game item */
     border-radius: 0px; /* Still undecided if I prefer rounded borders or not */
     height: auto;
-    padding: 8px;
-    background-color: rgba( 87, 84, 84, .4);
+    padding: 10px;
+    background: rgba(29, 30, 34, .6);
+    box-shadow: 0px 0px 30px rgba(0,0,0,0.2);
 }
 
 .game-name {
@@ -231,4 +280,84 @@ body {
 
 .level-item {
     justify-content: flex-start !important;
+}
+
+#add-game-modal {
+    color: #363636;
+    padding: 2em;
+}
+
+#search-results {
+    border: 1px solid #e1e4e8;
+    box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+    overflow: hidden;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+#modal-search-section {
+    min-height: 280px;
+}
+
+#search-results li {
+    cursor: pointer;
+    border-bottom: 1px solid #e1e4e8;
+    padding: .25em .0 .25em .5em;
+    color: #6a6a6a;
+    font-size: 14px;
+    font-style: italic;
+    display: flex;
+    justify-content:space-between;
+    padding-right: .5em;
+}
+
+#search-results li:hover {
+    color: #fff;
+    background: #3c91e6;
+}
+
+#search-results li .fas, .fa-check {
+    height: inherit;
+}
+
+.item-name {
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+    white-space: nowrap;
+    max-width: 300px;
+    padding-right: 1em;
+}
+
+#search-tags {
+    height: 100px;
+    display: block;
+}
+
+.tags {
+    padding: 0;
+}
+
+.tag-text {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.tag {
+    max-width: 250px;
+    background-color: #3c4047 !important;
+    color: #fff !important;
+}
+
+.is-added {
+    /* Add styling here */
+}
+
+.modal-break {
+    margin-top: 0;
+}
+
+#add-game-submit {
+    background-color: #3c4047;
+    color: #fff;
 }

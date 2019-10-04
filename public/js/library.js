@@ -19,8 +19,7 @@ function eventListeners() {
             $('#info_' + this.id).hide();
         }
     );
-    
-    
+    // Sort by dropdow listener
     $('#sort-by').change(function() {
         if(this.value === 'pl-a') {
             sortGames(0, true);
@@ -33,6 +32,7 @@ function eventListeners() {
         }
     });
 
+    // Filter listener
     $('#filter-input').on('input', function() {
         for( var i = 0; i < games.length; i++) {
             if(games[i].name.toLowerCase().includes(this.value.toLowerCase())) 
@@ -44,9 +44,8 @@ function eventListeners() {
 }
 
 function sortGames(selection, isAscending) {
-
     var toSort = [];
-
+    
     if(selection === 0) {
 
         for(var i = 0; i < games.length; i++) toSort.push([games[i].playtime, gameElements[i]]);
