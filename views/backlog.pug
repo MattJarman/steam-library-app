@@ -9,17 +9,25 @@ block content
                             h1(class='title') Backlog
                     if user
                         div(class='level-right')
-                            div(class='level-item')
-                                a(id='add-game-button' class='button')
-                                    i(class='fas fa-plus')
-                                    p(style='padding-left: .5em;') Add Game
-                                div(class='level-item has-text-centered')
+                            div(class='level-item cancel')
+                                div(id  ='cancel-button')
+                                    i(class='backlog-icon fas fa-times')
+                            div(class='level-item trash')
+                                div(id='trash-button')
+                                    i(class='backlog-icon far fa-trash-alt')
+                            div(class='level-item edit')
+                                div(id='edit-backlog-button')
+                                    i(class='backlog-icon fas fa-pencil-alt')
+                            div(class='level-item add')
+                                div(id='add-game-button')
+                                    i(class='backlog-icon fas fa-plus')
                 if backlog
                     div(id='game-list' class='games')
                         each game in backlog
-                            div(class='game-column column' id=game.appid)
-                                div(class='box game-item')
-                                    art(class='media')
+                            div(class='column-container')
+                                input(class='delete-checkbox hidden' autocomplete='off' type='checkbox')
+                                div(class='game-column column' id=game._id)
+                                    div(class='box game-item')
                                         figure(class='media-left game-logo')
                                             img(class='center' src=game.headerImage)
                                         div(class='media-content')

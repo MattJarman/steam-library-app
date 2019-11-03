@@ -23,14 +23,13 @@ block content
                 if games
                     div(id='game-list' class='games')
                         each game in games
-                            div(class='game-column column' id=game.appid)
+                            div(class='game-column library-item' id=game.appid)
                                 div(class='box game-item')
-                                    art(class='media')
-                                        figure(class='media-left game-logo')
-                                            img(class='center' src=game.imgURL)
-                                        div(class='media-content')
-                                            p(class='game-name')=game.name
-                                            p(class='game-playtime')= Math.round(game.playtime / 60) + ' hrs on record'
+                                    figure(class='media-left game-logo')
+                                        img(class='center' src=game.imgURL)
+                                    div(class='media-content')
+                                        p(class='game-name')=game.name
+                                        p(class='game-playtime')= Math.round(game.playtime / 60) + ' hrs on record'
     script(src='./js/library.js')
     script(id='game-data' type='text/javascript')
         | var games = !{JSON.stringify(games)}
