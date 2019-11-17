@@ -5,8 +5,8 @@ const passport = require('passport');
 const router = express.Router({strict: true});
 const session = require('express-session');
 
-const User = require('../models/User');
-const Game = require('../models/Game');
+const User = require('../models/user');
+const Game = require('../models/game');
 
 router.get('/steam',
     passport.authenticate('steam', {failureRedirect: '/'}),

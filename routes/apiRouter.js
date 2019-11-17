@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const router = express.Router();
 
-const Game = require('../models/Game');
+const Game = require('../models/game');
 
 router.get('/search', function(req, res) {
     Game.find({ name : { '$regex': req.query.app, '$options': 'i' }, type: 'game' })
