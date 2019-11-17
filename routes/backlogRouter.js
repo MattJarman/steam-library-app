@@ -42,6 +42,28 @@ router.post('/add-games', checkAuthenticated, function(req, res) {
     });
 });
 
+
+router.post('/remove-games', checkAuthenticated, function(req, res) {
+    var toDelete = req.body.toDelete;
+
+    var query = { _id: req.user._id };
+    var update = { $pull: { 'backlog': { $in: toDelete } } }
+
+    if(toDelete) {
+        User.findOneAndUpdate(query, update, { upsert: true })
+        .exec(function(err, user) {
+            if(err) console.log(err);
+
+            let response = {
+                status  : 200,
+                success : 'Games successfully deleted'
+            }
+
+            res.end(JSON.stringify(response));
+        });
+    }
+});
+
 function checkAuthenticated(req, res, next) {
     if (req.isAuthenticated()) { return next(); }
 

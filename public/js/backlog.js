@@ -9,24 +9,42 @@ $('document').ready(function() {
 function eventListeners() {
     // Modal listeners
     $('#add-game-button').click(function() {
-        $('#add-game-modal').toggleClass('is-active');
+        toggleActive($('#add-game-modal'));
+    });
+
+    $('#edit-backlog-button').click(function() {
+        toggleBacklogEditing();
+    });
+
+    $('#cancel-button').click(function() {
+        toggleBacklogEditing();
+    });
+
+    $('#trash-button').click(function() {
+        deleteFromBacklog();
     });
 
     $('.modal-background').click(function() {
-        $(this.parentElement).toggleClass('is-active');
+        toggleActive($(this.parentElement));
     });
 
     $('.modal-close').click(function() {
-        $(this.parentElement).toggleClass('is-active');
+        toggleActive($(this.parentElement));
     });
 
     $('#add-game-cancel').click(function() {
-        $('#add-game-modal').toggleClass('is-active');
+        toggleActive($('#add-game-modal'));
     });
 
     // Search input listeners
     $('#game-search-input').on('input', function() {
-        debouncedSearch(this.value);
+        if(this.value) {
+            $('#search-results').show();
+            debouncedSearch(this.value);
+            return;
+        }
+
+        $('#search-results').hide();
     });
 
     $('#game-search-input').on('keyup', function(e) {
@@ -47,19 +65,21 @@ function eventListeners() {
     $('#search-results').on('click', 'li', function() {
         if($('#search-tags').find('span[appid=\'' + this.id + '\']').length > 0) {
             $('span[appid=\'' + this.id + '\']').remove();
-        } else {
-            if($(this).hasClass('search-results-item')) {
-                var tag = '<span class=\'tag added-tag\' appid=\'' + this.id + '\'>'
-                        + '<div class=\'tag-text\'>' + this.innerText + '</div>'
-                        + '<input type=\'hidden\' name=\'game\' value=\'' + this.id + '\'>'
-                        + '<button class=\'delete is-small\' type=\'button\'>'
-                        + '</span>';
-                $('#search-tags').append(tag);
-            }
-        }
+            $(this).find('svg').toggle();
+            $('#search-tags').trigger('contentChanged');
+            return;
+        } 
 
-        $('#search-tags').trigger('contentChanged');
-        $(this).find('svg').toggle();
+        if($(this).hasClass('search-results-item')) {
+            var tag = '<span class=\'tag added-tag\' appid=\'' + this.id + '\'>'
+                    + '<div class=\'tag-text\'>' + this.innerText + '</div>'
+                    + '<input type=\'hidden\' name=\'game\' value=\'' + this.id + '\'>'
+                    + '<button class=\'delete is-small\' type=\'button\'>'
+                    + '</span>';
+            $('#search-tags').append(tag);
+            $('#search-tags').trigger('contentChanged');
+            $(this).find('svg').toggle();
+        }
     });
 
     $('#search-tags').on('click', '.delete', function() {
@@ -75,6 +95,38 @@ function eventListeners() {
         } else {
             $('#add-game-submit').prop('disabled', false);
         }   
+    });
+}
+
+function toggleActive(item) {
+    item.toggleClass('is-active');
+}
+
+function toggleBacklogEditing() {
+    $('.delete-checkbox').toggleClass('hidden');
+    $('.edit').toggle();
+    $('.trash').toggle();
+    $('.cancel').toggle();
+}
+
+function deleteFromBacklog() {
+    let toDelete = [];
+    $('.column-container').each(function(i, obj) {
+        let checked = obj.childNodes[0].checked;
+        if(checked) {
+            let gameId = obj.childNodes[1].id;
+            toDelete.push(gameId);
+        }
+    });
+
+    $.ajax({
+       url: '/backlog/remove-games',
+       type: 'POST',
+       data: { toDelete: toDelete },
+       success: function() {
+           location.reload();
+       },
+       error: function(jqXHR, status, err) {}
     });
 }
 

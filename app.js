@@ -110,7 +110,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(__dirname + '/../../public'));
 app.use(bodyParser.urlencoded({
-    extended: false
+    extended: true
 }));
 
 // Provide views folder and set view engine
