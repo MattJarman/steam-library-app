@@ -3,8 +3,8 @@
 }
 
 .delete-checkbox {
-    margin-left: 32px;
-    margin-right: 32px;
+    margin-left: 24px;
+    margin-right: 24px;
     display: none;
 }
 
@@ -25,10 +25,9 @@ input[type='checkbox'] {
     box-sizing: border-box;
     position: relative;
     box-sizing: content-box ;
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     min-width: 8px;
-    /* transition: all .3s linear; */
     cursor: pointer;   
     display: flex;
     justify-content: center;
