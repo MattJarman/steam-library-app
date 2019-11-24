@@ -1,0 +1,13 @@
+.library-item {
+    padding-bottom: 8px;
+}
+
+.game-playtime {
+    color: #bababa;
+    font-size: .75rem;
+}
+
+#filter-input {
+    border-radius: 4px;
+    width: 8rem;
+}
