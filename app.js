@@ -23,7 +23,6 @@ require('dotenv').config();
 
 const User = require('./models/user');
 
-
 const MONGODB_URI = process.env.MONGODB_URI;
 const steam_api_key = process.env.STEAM_API_KEY;
 
@@ -58,11 +57,6 @@ passport.deserializeUser(function(id, done) {
     });
 });
 
-
-// Use the SteamStrategy within Passport.
-//   Strategies in passport require a `validate` function, which accept
-//   credentials (in this case, an OpenID identifier and profile), and invoke a
-//   callback with a user object.
 passport.use(new SteamStrategy({
     returnURL: 'http://localhost:8080/auth/steam/return',
     realm: 'http://localhost:8080/',

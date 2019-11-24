@@ -22,7 +22,7 @@ block content
                                 div(id='add-game-button')
                                     i(class='backlog-icon fas fa-plus')
                 if backlog
-                    div(id='game-list' class='games')
+                    div(id='backlog-game-list' class='games')
                         each game in backlog
                             div(class='column-container')
                                 input(class='delete-checkbox hidden' autocomplete='off' type='checkbox')
@@ -31,7 +31,14 @@ block content
                                         figure(class='media-left game-logo')
                                             img(class='center' src=game.headerImage)
                                         div(class='media-content')
-                                            p(class='game-name')=game.name
+                                            div(class='game-top')
+                                                p(class='game-name')=game.name
+                                                div(id='more-options-button')
+                                                    i(class='backlog-icon fas fa-ellipsis-h')
+                nav(class='level')
+                    div(class='level-left')
+                        div(class='level-item has-text-centered')
+                                    h1(class='title') Completed
             div(id='add-game-modal' class='modal')
                 div(class='modal-background')
                 div(class='modal-card')

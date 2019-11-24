@@ -109,6 +109,7 @@ a.navbar-item:focus {
 
 .games {
     width: 100%;
+    padding-bottom: 1.5rem;
 }
 
 .game-container {
@@ -132,6 +133,16 @@ a.navbar-item:focus {
     align-items: center;
 }
 
+.game-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#more-options-button {
+    margin-right: 6px;
+}
+
 .game-logo img {
     width: 100%;
 }
@@ -143,12 +154,8 @@ a.navbar-item:focus {
 .column-container {
     display: flex;
     align-items: center;
-    padding-bottom: .5em;
+    padding-bottom: 8px;
     width: 100%;
-}
-
-.game-content {
-
 }
 
 .column {
