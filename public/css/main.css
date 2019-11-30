@@ -10,20 +10,8 @@ html {
     background-attachment: fixed;
 }
 
-body {
+body, a {
     color: #fff;
-}
-
-.title {
-    color: #fff !important;
-}
-
-.subtitle{
-    color: #fff;
-}
-
-.section {
-    padding: 3rem .5rem !important;
 }
 
 .center {
@@ -60,23 +48,22 @@ body {
     background-color: transparent;
 }
 
-#nav-menu, .navbar-menu {
-    background: transparent;
+.navbar-menu {
     padding-bottom: 0;
 }
 
-.navbar-item:hover, .navbar-link:hover {
-    background-color: rgba( 0, 0, 0, 0.1 ) !important;
-    color: #fff !important;
+.navbar-link.is-active, .navbar-link:focus, 
+.navbar-link:focus-within, .navbar-link:hover, 
+a.navbar-item.is-active, a.navbar-item:focus, 
+a.navbar-item:focus-within, a.navbar-item:hover {
+    background-color: transparent;
+    color: #BABABA;
 }
 
-a.navbar-item:focus {
-    background-color: rgba( 0, 0, 0, 0.1 ) !important;
-    color: #fff !important;
-}
-
-.navbar-item.has-dropdown.is-active .navbar-link {
-    background-color: rgba( 0, 0, 0, 0.1 ) !important;
+.navbar-dropdown a.navbar-item:focus, 
+.navbar-dropdown a.navbar-item:hover {
+    background-color: transparent;
+    color: #BABABA;
 }
 
 .navbar-dropdown {
@@ -85,7 +72,7 @@ a.navbar-item:focus {
 }
 
 .navbar-item.has-dropdown:hover .navbar-link {
-    background-color: rgba( 0, 0, 0, 0.1 );
+    background-color: transparent;
 }
 
 .navbar-link:not(.is-arrowless)::after {
@@ -108,11 +95,8 @@ a.navbar-item:focus {
 
 .avatar {
     width: 32px;
+    margin-right: 16px;
     max-height: 32px !important;
-}
-
-.username {
-    padding-left: .5rem;
 }
 
 .user-nav {
@@ -122,7 +106,7 @@ a.navbar-item:focus {
 
 @media screen and (max-width: 1023px) {
     #nav-menu {
-        background: #2c2f34;
+        background: #161A24;
         box-shadow: 3px 0px 15px rgba(0,0,0,0.2);
     }
 
@@ -147,16 +131,16 @@ a.navbar-item:focus {
     }
 
     .navbar-dropdown {
-        background: #25272b;
         padding-top: 0;
     }
 
     .navbar-item.has-dropdown .navbar-dropdown {
         display: none;
       }
-      .navbar-item.has-dropdown.is-active .navbar-dropdown {
+
+    .navbar-item.has-dropdown.is-active .navbar-dropdown {
         display: block;
-      }
+    }
 
     .ordered-mobile {
         display: flex !important;
@@ -173,6 +157,9 @@ a.navbar-item:focus {
 
     .nav-icon {
         display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 32px;
     }
 
     #search-results li {
@@ -268,14 +255,6 @@ a.navbar-item:focus {
     margin-bottom: 2px;
 }
 
-<<<<<<< HEAD:public/css/styles.css
-.game-playtime {
-    color: #636363;
-    font-size: 12px;
-}
-
-=======
->>>>>>> 5b2be4583f1efaf05930a7518c9736e33e9ea616:public/css/main.css
 .info {
     /* border-radius: 6px; */ /* Still undecided if I prefer rounded borders or not */
     width: 100%;
@@ -300,7 +279,6 @@ a.navbar-item:focus {
     background: white;
 }
 
-<<<<<<< HEAD:public/css/styles.css
 #filter-input, .input {
     border-radius: 4px;
     width: 8rem;
@@ -318,8 +296,6 @@ a.navbar-item:focus {
     color: #fff;
 }
 
-=======
->>>>>>> 5b2be4583f1efaf05930a7518c9736e33e9ea616:public/css/main.css
 .select select, .sort-dropdown {
     background: rgba( 87, 84, 84, .2);
 }
