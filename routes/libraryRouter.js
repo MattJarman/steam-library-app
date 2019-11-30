@@ -4,9 +4,9 @@ const request = require('request');
 const bodyParser = require('body-parser');
 const router = express.Router({strict: true});
 
-const User = require('../models/User');
-const Game = require('../models/Game');
-const Blacklist = require('../models/Blacklist');
+const User = require('../models/user');
+const Game = require('../models/game');
+const Blacklist = require('../models/blacklist');
 
 const steam_api_key = process.env.STEAM_API_KEY;
 
