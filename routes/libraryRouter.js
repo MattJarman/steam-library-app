@@ -79,6 +79,9 @@ async function getUserGames(steamid) {
                     var apps = [];
 
                     for(var i = 0; i < userGames.length; i++) {
+                        if(userGames[i].type === "DLC") {
+                            continue;
+                        }
 
                         // Create game image url
                         var imgURL = 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/' 

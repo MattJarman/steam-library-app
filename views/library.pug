@@ -29,7 +29,7 @@ block content
                                         img(class='center' src=game.imgURL)
                                     div(class='media-content')
                                         p(class='game-name')=game.name
-                                        p(class='game-playtime')= Math.round(game.playtime / 60) + ' hrs on record'
+                                        p(class='game-playtime')= Math.round(game.playtime / 60) + ' hours played'
     script(src='./js/library.js')
     script(id='game-data' type='text/javascript')
         | var games = !{JSON.stringify(games)}

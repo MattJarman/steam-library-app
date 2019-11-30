@@ -4,7 +4,8 @@ html, body {
 }
 
 html {
-    background: radial-gradient(ellipse farthest-corner at 50% 0%, #3c4047 0%, #3c4047 50%, #33363d 100%);
+    /* background: radial-gradient(ellipse farthest-corner at 50% 0%, #3c4047 0%, #3c4047 50%, #33363d 100%); */
+    background: #212F3B;
     background-attachment: fixed;
 }
 
@@ -23,12 +24,14 @@ body {
 }
 
 .nav {
-    background: #2c2f34;
+    background: #161A24;
     box-shadow: 0px 0px 30px rgba(0,0,0,0.2);
+    height: 58px;
 }
 
 .navbar-item, .navbar-link {
     color: #fff;
+    padding: 16px 24px;
 }
 
 .icon {
@@ -67,7 +70,7 @@ a.navbar-item:focus {
 }
 
 .navbar-dropdown {
-    background-color: #25272b;
+    background-color: #161a24;
     border-top: 2px solid rgba( 0, 0, 0, 0.1 );
 }
 
@@ -127,7 +130,7 @@ a.navbar-item:focus {
 .game-logo {
     max-width: 35%;
     width: 184px;
-    margin-right: 6px;
+    margin-right: 16px;
     justify-content: center;
     align-items: center;
 }
@@ -213,7 +216,7 @@ input[type="checkbox"]:checked:before {
     border-radius: 8px;
     height: auto;
     padding: 10px;
-    background: #141618;
+    background: #161A24;
     /* box-shadow: 0px 0px 30px rgba(0,0,0,0.2); */
     box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.3);
     display: flex;
@@ -221,16 +224,17 @@ input[type="checkbox"]:checked:before {
 
 .game-name {
     color: #fff;
-    font-size: 1rem;
+    font-size: 18px;
     margin-bottom: 0 !important;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+    margin-bottom: 2px;
 }
 
 .game-playtime {
-    color: #bababa;
-    font-size: .75rem;
+    color: #636363;
+    font-size: 12px;
 }
 
 .info {
@@ -257,9 +261,13 @@ input[type="checkbox"]:checked:before {
     background: white;
 }
 
-#filter-input {
+#filter-input, .input {
     border-radius: 4px;
     width: 8rem;
+}
+
+.input::placeholder {
+    color: #636363;
 }
 
 .title {

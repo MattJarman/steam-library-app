@@ -23,7 +23,7 @@ require('dotenv').config();
 
 const User = require('./models/User');
 
-const MONGODB_URI = process.env.MONGODB_URI;
+const MONGODB_URI = process.env.MONGODB_LOCAL_URI;
 const steam_api_key = process.env.STEAM_API_KEY;
 
 // Database setup
