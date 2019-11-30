@@ -23,12 +23,13 @@ require('dotenv').config();
 
 const User = require('./models/user');
 
-const MONGODB_URI = process.env.MONGODB_LOCAL_URI;
+const MONGODB_URI = process.env.MONGODB_URI;
 const steam_api_key = process.env.STEAM_API_KEY;
 
 // Database setup
 mongoose.connect(MONGODB_URI, {
-   useNewUrlParser: true 
+    useUnifiedTopology: true,
+    useNewUrlParser: true 
 });
 
 const db = mongoose.connection;
