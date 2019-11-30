@@ -102,10 +102,6 @@ input[type="checkbox"]:checked:before {
     display: block;
 }
 
-.tags {
-    padding: 0;
-}
-
 .tag-text {
     text-overflow: ellipsis;
     overflow: hidden;
@@ -131,4 +127,12 @@ input[type="checkbox"]:checked:before {
 
 .backlog-icon:hover {
     color: #fff;
+}
+
+input.delete-checkbox.hidden {
+    display: none;
+}
+
+div.game-column.column {
+    padding:
 }

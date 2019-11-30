@@ -26,8 +26,8 @@ block content
                         each game in backlog
                             div(class='column-container')
                                 input(class='delete-checkbox hidden' autocomplete='off' type='checkbox')
-                                div(class='game-column column' id=game._id)
-                                    div(class='box game-item')
+                                div(class='game-column' id=game._id)
+                                    div(class='game-item')
                                         figure(class='media-left game-logo')
                                             img(class='center' src=game.headerImage)
                                         div(class='media-content')
@@ -50,7 +50,7 @@ block content
                             ul(id='search-results')
                         section(class='modal-card-body')
                             hr(class='modal-break')
-                            div(id='search-tags' class='tags')
+                            div(id='search-tags' class='tags is-paddingless')
                         footer(class='modal-card-foot')
                             button(id='add-game-submit' type='submit' value='submit' class='button') Add Games
                             button(id='add-game-cancel' type='button' class='button') Cancel
