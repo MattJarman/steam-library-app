@@ -1,66 +1,45 @@
 const express = require('express');
 const path = require('path');
 const router = express.Router();
-const User = require('../models/user');
+const User = require('../modules/user');
 
-router.get('/', checkAuthenticated, function(req, res) {
-    if(req.session)
+router.get('/', checkAuthenticated, async (req, res) => {
+    if(req.session) {
         req.session.redirect = req.originalUrl;
+    }
     
-    // Get user's backlog from db;
+    let user = new User(req.user._id);
+    let backlog = await user.getBacklog();
 
-    User.findById(req.user._id)
-    .populate('backlog')
-    .exec(function(err, user) {
-        if(err) console.error(err);
+    if(backlog) {
+        res.render('backlog', {
+           'backlog': backlog,
+           'user': req.user 
+        });
 
-        if(user) {
-            res.render('backlog', { 
-                backlog: user.backlog,
-                user: req.user 
-            });
-        } else {
-            res.render('backlog', {
-                user: req.user
-            });
-        }
-    });
-        
-    
+        return;
+    }
+
+    res.render('backlog', {
+        'user': req.user 
+     });
 });
 
-router.post('/add-games', checkAuthenticated, function(req, res) {
-    var games = Array.isArray(req.body.game) ? req.body.game : [req.body.game]
+router.post('/add-games', checkAuthenticated, async (req, res) => {
+    let user = new User(req.user._id);
+    let inserted = await user.addGamesToBacklog(req.body.game);
 
-    var query = { _id: req.user._id };
-    var update = { $addToSet: { 'backlog': { $each: games } } };
-
-    User.findOneAndUpdate(query, update, { upsert: true })
-    .exec(function(err, user) {
-        if(err) console.log(err);
-        res.redirect('/backlog');
-    });
+    res.redirect('/backlog');
 });
 
-
-router.post('/remove-games', checkAuthenticated, function(req, res) {
-    var toDelete = req.body.toDelete;
-
-    var query = { _id: req.user._id };
-    var update = { $pull: { 'backlog': { $in: toDelete } } }
+router.post('/remove-games', checkAuthenticated, async (req, res) => {
+    let toDelete = req.body.toDelete;
 
     if(toDelete) {
-        User.findOneAndUpdate(query, update, { upsert: true })
-        .exec(function(err, user) {
-            if(err) console.log(err);
+        let user = new User(req.user._id);
+        let response = await user.deleteGamesFromBacklog(toDelete);
 
-            let response = {
-                status  : 200,
-                success : 'Games successfully deleted'
-            }
-
-            res.end(JSON.stringify(response));
-        });
+        res.end(JSON.stringify(response));
     }
 });
 

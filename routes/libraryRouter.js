@@ -1,12 +1,7 @@
 const express = require('express');
-const request = require('request');
-// const async = require('async');
 const bodyParser = require('body-parser');
 const router = express.Router({strict: true});
 const SteamAPI = require('../modules/steamAPI');
-
-const User = require('../models/user');
-const Game = require('../models/game');
 
 const STEAM_API_KEY = process.env.STEAM_API_KEY;
 const BASE_IMG_URL = 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/';

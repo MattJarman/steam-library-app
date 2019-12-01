@@ -5,7 +5,6 @@ $('document').ready(function() {
     eventListeners();
 });
 
-
 function eventListeners() {
     // Modal listeners
     $('#add-game-button').click(function() {
@@ -122,12 +121,24 @@ function deleteFromBacklog() {
     $.ajax({
        url: '/backlog/remove-games',
        type: 'POST',
-       data: { toDelete: toDelete },
-       success: function() {
-           location.reload();
+       data: { 'toDelete': toDelete },
+       success: res => {
+        let response = JSON.parse(res);
+        let deleted = response.payload;
+        deleteElements(deleted, true);
        },
-       error: function(jqXHR, status, err) {}
+       error: (jqXHR, status, err) => {}
     });
+}
+
+function deleteElements(elements, deleteParent = false) {
+    for(let i = 0; i < elements.length; i++) {
+        if(deleteParent) {
+            $('#' + elements[i]).parent().remove();
+            continue;
+        }
+        $('#' + elements[i]).parent().remove();
+    }
 }
 
 function search(name) {
