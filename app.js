@@ -24,7 +24,7 @@ require('dotenv').config();
 const User = require('./models/user');
 
 const MONGODB_URI = process.env.MONGODB_URI;
-const steam_api_key = process.env.STEAM_API_KEY;
+const STEAM_API_KEY = process.env.STEAM_API_KEY;
 
 // Database setup
 mongoose.connect(MONGODB_URI, {
@@ -61,7 +61,7 @@ passport.deserializeUser(function(id, done) {
 passport.use(new SteamStrategy({
     returnURL: 'http://localhost:8080/auth/steam/return',
     realm: 'http://localhost:8080/',
-    apiKey: steam_api_key
+    apiKey: STEAM_API_KEY
   },
   function(identifier, profile, done) {
     // asynchronous verification, for effect...
