@@ -98,7 +98,6 @@ a.navbar-item:focus-within, a.navbar-item:hover {
 }
 
 .media-content {
-    overflow: hidden;
     width: 0;
 }
 
@@ -244,6 +243,7 @@ img.avatar {
     /* box-shadow: 0px 0px 30px rgba(0,0,0,0.2); */
     box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.3);
     display: flex;
+    overflow: visible;
 }
 
 p.game-name {
@@ -291,3 +291,37 @@ p.game-name {
 div.level-item {
     justify-content: flex-start;
 }
+
+button.button {
+    width: 100px;
+    border-radius: 2px;
+    height: 32px;
+    background-color: #0096e0;
+    border-color: #0096e0;
+    color: #fff;
+    margin-left: 8px;
+    border-width: 1px;
+    font-weight: bold;
+    outline: 0;
+}
+
+button::-moz-focus-inner {
+    border: 0;
+}
+
+button.button.inverse {
+    background-color: #212F3B;
+    color: #bababa;
+    border-color: #bababa;
+}
+
+button.button.inverse:hover {
+    color: #fff;
+    border-color: #fff;
+}
+
+.button.button:hover {
+    color: #161A24;
+    border-color: #0096e0;
+}
+

@@ -1,3 +1,6 @@
+const EDIT_BUTTON_TEXT_DEFAULT = 'Edit';
+const EDIT_BUTTON_TEXT_NEW = 'Cancel';
+
 $('document').ready(function() {
     // Disable modal submit button
     $('#add-game-submit').prop('disabled', true);
@@ -103,9 +106,11 @@ function toggleActive(item) {
 
 function toggleBacklogEditing() {
     $('.delete-checkbox').toggleClass('hidden');
-    $('.edit').toggle();
-    $('.trash').toggle();
-    $('.cancel').toggle();
+
+    let buttonText = $('#edit-backlog-button').text();
+    let newButtonText = buttonText == "Edit" ? "Cancel" : "Edit";
+
+    $('#edit-backlog-button').text(newButtonText);
 }
 
 function deleteFromBacklog() {
