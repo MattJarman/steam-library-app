@@ -41,8 +41,13 @@ html
                     $(this.parentElement).toggleClass('is-active');
                 });
 
-                $('#more-options-button').on('click', function() {
+                $('.dropdown').on('click', function(e) {
+                    e.stopPropagation();
                     $(this).toggleClass('is-active');
+                });
+
+                $(document).on('click', function() {
+                    $('.dropdown').removeClass('is-active');
                 });
             });
             

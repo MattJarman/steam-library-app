@@ -18,11 +18,7 @@ function eventListeners() {
         toggleBacklogEditing();
     });
 
-    $('#cancel-button').click(function() {
-        toggleBacklogEditing();
-    });
-
-    $('#trash-button').click(function() {
+    $('#delete-backlog-button').click(function() {
         deleteFromBacklog();
     });
 
@@ -107,6 +103,7 @@ function toggleActive(item) {
 function toggleBacklogEditing() {
     $('.delete-checkbox').toggleClass('hidden');
 
+    $('#delete-backlog-button').toggleClass('hidden');
     let buttonText = $('#edit-backlog-button').text();
     let newButtonText = buttonText == "Edit" ? "Cancel" : "Edit";
 
@@ -131,6 +128,7 @@ function deleteFromBacklog() {
         let response = JSON.parse(res);
         let deleted = response.payload;
         deleteElements(deleted, true);
+        toggleBacklogEditing();
        },
        error: (jqXHR, status, err) => {}
     });

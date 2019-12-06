@@ -133,6 +133,11 @@ input.delete-checkbox.hidden {
     display: none;
 }
 
-div.game-column.column {
-    padding:
+#delete-backlog-button.button {
+    background-color:#fe4a49;
+    border-color: #fe4a49;
+}
+
+.button.hidden {
+    display: none;
 }
