@@ -150,6 +150,10 @@ img.avatar {
         display: block;
     }
 
+    .navbar-dropdown > a.navbar-item {
+        padding-left: 64px;
+    }
+
     .navbar-menu.is-active, .ordered-mobile {
         display: flex;
         flex-flow: column;
@@ -323,4 +327,13 @@ button.button.inverse:hover {
 .button.button:hover {
     color: #161A24;
     border-color: #0096e0;
+}
+
+a.dropdown-item {
+    display: flex;
+    align-items: center;
+}
+
+svg.dropdown-icon {
+    margin-right: 12px;
 }

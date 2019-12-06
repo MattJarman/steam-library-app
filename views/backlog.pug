@@ -29,9 +29,15 @@ block content
                                                     i(class='backlog-icon fas fa-ellipsis-h')
                                                     div(class="dropdown-menu" id="dropdown-menu" role="menu")
                                                         div(class="dropdown-content")
-                                                            a(href="#" class="dropdown-item") Edit
-                                                            a(href="#" class="dropdown-item") Move to Completed
-                                                            a(href="#" class="dropdown-item") Delete
+                                                            a(href="#" class="dropdown-item") 
+                                                                i(class='far fa-edit dropdown-icon')
+                                                                p Edit
+                                                            a(href="#" class="dropdown-item") 
+                                                                i(class='far fa-check-circle dropdown-icon')
+                                                                p Mark As Completed
+                                                            a(href="#" class="dropdown-item")
+                                                                i(class='far fa-trash-alt dropdown-icon')
+                                                                p Delete
                 nav(class='level')
                     div(class='level-left')
                         div(class='level-item has-text-centered')

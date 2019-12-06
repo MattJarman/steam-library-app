@@ -26,9 +26,9 @@ router.get('/', checkAuthenticated, (req, res) => {
 router.get('/:id', async (req, res) => {
     let id = req.params.id;
 
-    if(req.session) {
-        req.session.redirect = req.originalUrl;
-    }
+    // if(req.session) {
+    //     req.session.redirect = req.originalUrl;
+    // }
 
     let games = [];
 
@@ -47,7 +47,7 @@ router.get('/:id', async (req, res) => {
     let response = await api.getUserGames(id, true, true);
 
     if(response.status == HTTP_OK) {
-        games = mapGameData(games.payload);
+        games = mapGameData(response.payload.games);
         req.session.games = games;
 
         res.render('library', {
@@ -64,8 +64,9 @@ router.get('/:id', async (req, res) => {
 });
 
 function mapGameData(data) {
-    let gameData = Object.keys(data);
+    let gameData = data;
     let games = [];
+
 
     for(let i = 0; i < gameData.length; i++) {
         let imgURL = BASE_IMG_URL
@@ -82,7 +83,7 @@ function mapGameData(data) {
         });
     }
     
-    return games;
+    return sortGames(games);
 }
 
 function checkAuthenticated(req, res, next) {
@@ -93,6 +94,18 @@ function checkAuthenticated(req, res, next) {
     }
 
     res.render('library');
+}
+
+function sortGames(games) {
+    return games.sort((a, b) => {
+        if(a.playtime < b.playtime)
+            return 1;
+        
+        if(a.playtime > b.playtime)
+            return -1
+        
+        return 0;
+    });
 }
 
 module.exports = router;

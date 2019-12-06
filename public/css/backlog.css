@@ -32,6 +32,7 @@ input[type='checkbox'] {
     display: flex;
     justify-content: center;
     align-items: center; 
+    outline: 0;
 }
 
 input[type='checkbox']:hover {
