@@ -2,42 +2,42 @@ extends layout
 block content
     section(class='section')
         div(class='container')
-        if user
-            div(class='game-container')
-                nav(class='level')
-                    div(class='level-left')
-                        div(class='level-item has-text-centered')
-                            h1(class='title') Backlog
-                    if user
-                        div(class='level-right')
-                            button(id='add-game-button' class='button') Add
-                            button(id='edit-backlog-button' class='button inverse') Edit
-                            button(id='delete-backlog-button' class='button hidden') Delete
-                if backlog
-                    div(id='backlog-game-list' class='games')
-                        each game in backlog
-                            div(class='column-container')
-                                input(class='delete-checkbox hidden' autocomplete='off' type='checkbox')
-                                div(class='game-column' id=game._id)
-                                    div(class='game-item')
-                                        figure(class='media-left game-logo')
-                                            img(class='center' src=game.headerImage)
-                                        div(class='media-content')
-                                            div(class='game-top')
-                                                p(class='game-name')=game.name
-                                                div(class='dropdown is-right' id='more-options-button' haspopup='true' aria-controls='dropdown-menu')
-                                                    i(class='backlog-icon fas fa-ellipsis-h')
-                                                    div(class="dropdown-menu" id="dropdown-menu" role="menu")
-                                                        div(class="dropdown-content")
-                                                            a(href="#" class="dropdown-item") 
-                                                                i(class='far fa-edit dropdown-icon')
-                                                                p Edit
-                                                            a(href="#" class="dropdown-item") 
-                                                                i(class='far fa-check-circle dropdown-icon')
-                                                                p Mark As Completed
-                                                            a(href="#" class="dropdown-item")
-                                                                i(class='far fa-trash-alt dropdown-icon')
-                                                                p Delete
+            if user
+                div(class='game-container')
+                    nav(class='level')
+                        div(class='level-left')
+                            div(class='level-item has-text-centered')
+                                h1(class='title') Backlog
+                        if user
+                            div(class='level-right')
+                                button(id='add-game-button' class='button') Add
+                                button(id='edit-backlog-button' class='button inverse') Edit
+                                button(id='delete-backlog-button' class='button hidden') Delete
+                    if backlog
+                        div(id='backlog-game-list' class='games')
+                            each game in backlog
+                                div(class='column-container')
+                                    input(class='delete-checkbox hidden' autocomplete='off' type='checkbox')
+                                    div(class='game-column' id=game._id)
+                                        div(class='game-item')
+                                            figure(class='media-left game-logo')
+                                                img(class='center' src=game.headerImage)
+                                            div(class='media-content')
+                                                div(class='game-top')
+                                                    p(class='game-name')=game.name
+                                                    div(class='dropdown is-right' id='more-options-button' haspopup='true' aria-controls='dropdown-menu')
+                                                        i(class='backlog-icon fas fa-ellipsis-h')
+                                                        div(class="dropdown-menu" id="dropdown-menu" role="menu")
+                                                            div(class="dropdown-content")
+                                                                a(href="#" class="dropdown-item") 
+                                                                    i(class='far fa-edit dropdown-icon')
+                                                                    p Edit
+                                                                a(href="#" class="dropdown-item") 
+                                                                    i(class='far fa-check-circle dropdown-icon')
+                                                                    p Mark As Completed
+                                                                a(href="#" class="dropdown-item")
+                                                                    i(class='far fa-trash-alt dropdown-icon')
+                                                                    p Delete
                 nav(class='level')
                     div(class='level-left')
                         div(class='level-item has-text-centered')
