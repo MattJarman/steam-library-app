@@ -34,6 +34,7 @@ router.post('/add-games', checkAuthenticated, async (req, res) => {
 
 router.post('/remove-games', checkAuthenticated, async (req, res) => {
     let toDelete = req.body.toDelete;
+    res.setHeader('content-type', 'text/javascript');
 
     if(toDelete) {
         let user = new User(req.user._id);

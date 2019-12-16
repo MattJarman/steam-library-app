@@ -53,9 +53,9 @@ class User {
                 if(err) console.log(err);
                 
                 resolve({
-                    'payload': toDelete,
-                    'status': HTTP_OK,
-                    'message': 'Games successfully deleted.'
+                    payload: toDelete,
+                    status: HTTP_OK,
+                    message: 'Games successfully deleted.'
                 });
             });
         });

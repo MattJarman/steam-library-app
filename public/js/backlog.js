@@ -18,6 +18,10 @@ function eventListeners() {
         toggleBacklogEditing();
     });
 
+    $('#cancel-edit-backlog-button').click(function() {
+        toggleBacklogEditing();
+    });
+
     $('#delete-backlog-button').click(function() {
         deleteFromBacklog();
     });
@@ -32,6 +36,11 @@ function eventListeners() {
 
     $('#add-game-cancel').click(function() {
         toggleActive($('#add-game-modal'));
+    });
+
+    $('.delete-dropdown-item').click(function() {
+        let game = $(this).closest('.game-column');
+        deleteFromBacklog(game); // Delete parent
     });
 
     // Search input listeners
@@ -102,16 +111,34 @@ function toggleActive(item) {
 
 function toggleBacklogEditing() {
     $('.delete-checkbox').toggleClass('hidden');
-
     $('#delete-backlog-button').toggleClass('hidden');
-    let buttonText = $('#edit-backlog-button').text();
-    let newButtonText = buttonText == "Edit" ? "Cancel" : "Edit";
-
-    $('#edit-backlog-button').text(newButtonText);
+    $('#edit-backlog-button').toggleClass('hidden');
+    $('#cancel-edit-backlog-button').toggleClass('hidden');
 }
 
-function deleteFromBacklog() {
+function deleteFromBacklog(element = null) {
     let toDelete = [];
+
+    if(element) {
+        let gameId = element.attr('id');
+        toDelete.push(gameId);
+
+        $.ajax({
+            url: '/backlog/remove-games',
+            type: 'POST',
+            data: { 'toDelete': toDelete },
+            success: res => {
+                let response = JSON.parse(res);
+                let deleted = response.payload;
+
+                deleteElements(deleted, true);
+            },
+            error: (jqXHR, status, err) => {}
+         });
+
+         return;
+    }
+
     $('.column-container').each(function(i, obj) {
         let checked = obj.childNodes[0].checked;
         if(checked) {
@@ -125,10 +152,10 @@ function deleteFromBacklog() {
        type: 'POST',
        data: { 'toDelete': toDelete },
        success: res => {
-        let response = JSON.parse(res);
-        let deleted = response.payload;
-        deleteElements(deleted, true);
-        toggleBacklogEditing();
+           let response = JSON.parse(res);
+           let deleted = response.payload;
+           deleteElements(deleted, true);
+           toggleBacklogEditing();
        },
        error: (jqXHR, status, err) => {}
     });

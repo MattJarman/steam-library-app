@@ -10,9 +10,23 @@ block content
                                 h1(class='title') Backlog
                         if user
                             div(class='level-right')
-                                button(id='add-game-button' class='button') Add
-                                button(id='edit-backlog-button' class='button inverse') Edit
-                                button(id='delete-backlog-button' class='button hidden') Delete
+                            div(class='field is-grouped')
+                                button(id='add-game-button' class='button is-success')
+                                    span(class='icon is-small')
+                                        i(class='fas fa-plus')
+                                    span Add
+                                button(id='edit-backlog-button' class='button')
+                                    span(class='icon is-small')
+                                        i(class='fas fa-edit')
+                                    span Edit
+                                button(id='cancel-edit-backlog-button' class='button hidden')
+                                    span(class='icon is-small')
+                                        i(class='fas fa-ban')
+                                    span Cancel
+                                button(id='delete-backlog-button' class='button is-danger hidden')
+                                    span(class='icon is-small')
+                                        i(class='fas fa-trash-alt')
+                                    span Delete
                     if backlog
                         div(id='backlog-game-list' class='games')
                             each game in backlog
@@ -29,13 +43,13 @@ block content
                                                         i(class='backlog-icon fas fa-ellipsis-h')
                                                         div(class="dropdown-menu" id="dropdown-menu" role="menu")
                                                             div(class="dropdown-content")
-                                                                a(href="#" class="dropdown-item") 
+                                                                a(class='edit-dropdown-item dropdown-item') 
                                                                     i(class='far fa-edit dropdown-icon')
                                                                     p Edit
-                                                                a(href="#" class="dropdown-item") 
+                                                                a(class='mark-complete-dropdown-item dropdown-item') 
                                                                     i(class='far fa-check-circle dropdown-icon')
                                                                     p Mark As Completed
-                                                                a(href="#" class="dropdown-item")
+                                                                a(class='delete-dropdown-item dropdown-item')
                                                                     i(class='far fa-trash-alt dropdown-icon')
                                                                     p Delete
                 nav(class='level')
@@ -55,7 +69,13 @@ block content
                             hr(class='modal-break')
                             div(id='search-tags' class='tags is-paddingless')
                         footer(class='modal-card-foot')
-                            button(id='add-game-submit' type='submit' value='submit' class='button') Add Games
-                            button(id='add-game-cancel' type='button' class='button') Cancel
+                            button(id='add-game-submit' type='submit' value='submit' class='button is-success')
+                                span(class='icon is-small')
+                                    i(class='fas fa-check-circle')
+                                span Add to Backlog
+                            button(id='add-game-cancel' type='button' class='button is-danger')
+                                span(class='icon is-small')
+                                    i(class='fas fa-ban')
+                                span Cancel
                 button(class='modal-close is-large' aria-label='close')
     script(src='./js/backlog.js')
