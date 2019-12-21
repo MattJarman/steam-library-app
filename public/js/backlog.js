@@ -1,4 +1,5 @@
 const COMPLETED_CATEGORY_NAME = 'completed';
+const TOAST_TIMEOUT = 3000;
 
 $('document').ready(function() {
     // Disable modal submit button
@@ -144,6 +145,7 @@ function deleteGames(element = null) {
                 let deleted = response.payload;
 
                 deleteElements(deleted[category], true);
+                showToast('Game Deleted');
             },
             error: (jqXHR, status, err) => {}
          });
@@ -173,6 +175,7 @@ function deleteGames(element = null) {
                deleteElements(deleted[key], true);
            }
 
+           showToast('Games Deleted');
            toggleBacklogEditing();
        },
        error: (jqXHR, status, err) => {}
@@ -209,10 +212,23 @@ function moveGame(from, to, game) {
             let gameElement = $(`#${gameId}`);
             gameElement.parent().removeClass(`${from}`);
             gameElement.parent().addClass(`${to}`);
-            gameElement.parent().appendTo($(`#${to}`));      
+            gameElement.parent().appendTo($(`#${to}`));
+            
+            showToast('Moved to Completed');
         },
         error: (jqXHR, status, err) => {}
      });
+}
+
+function showToast(message) {
+    let toast = $('#toast');
+    let toastMsg = $('#toast-message');
+    toastMsg.text(message);
+    toast.addClass('show');
+
+    setTimeout(() => {
+        toast.removeClass('show');
+    }, TOAST_TIMEOUT);
 }
 
 function search(name) {

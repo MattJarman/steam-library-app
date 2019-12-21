@@ -55,7 +55,7 @@ block content
                     nav(class='level')
                         div(class='level-left')
                             div(class='level-item has-text-centered')
-                                        h1(class='title') Completed
+                                h1(class='title') Completed
                     if completed
                         div(id='completed' class='games')
                             each game in completed
@@ -78,6 +78,11 @@ block content
                                                                 a(class='delete-dropdown-item dropdown-item')
                                                                     i(class='far fa-trash-alt dropdown-icon')
                                                                     p Delete
+            div(class='toast-container')
+                div(class='toast' id='toast')
+                    span(class='icon is-small toast-icon')
+                        i(class='fas fa-check')
+                    span(id='toast-message') Moved to Completed
             div(id='add-game-modal' class='modal')
                 div(class='modal-background')
                 div(class='modal-card')
