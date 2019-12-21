@@ -1,5 +1,4 @@
-const EDIT_BUTTON_TEXT_DEFAULT = 'Edit';
-const EDIT_BUTTON_TEXT_NEW = 'Cancel';
+const COMPLETED_CATEGORY_NAME = 'completed';
 
 $('document').ready(function() {
     // Disable modal submit button
@@ -23,7 +22,7 @@ function eventListeners() {
     });
 
     $('#delete-backlog-button').click(function() {
-        deleteFromBacklog();
+        deleteGames();
     });
 
     $('.modal-background').click(function() {
@@ -40,7 +39,15 @@ function eventListeners() {
 
     $('.delete-dropdown-item').click(function() {
         let game = $(this).closest('.game-column');
-        deleteFromBacklog(game); // Delete parent
+        deleteGames(game); // Delete parent
+    });
+
+    $('.mark-complete-dropdown-item').click(function() {
+        let gameElement = $(this).closest('.column-container')[0];
+        let from = gameElement.classList[1];
+        let gameId = gameElement.lastChild.id;
+
+        moveGame(from, COMPLETED_CATEGORY_NAME, gameId);
     });
 
     // Search input listeners
@@ -116,12 +123,17 @@ function toggleBacklogEditing() {
     $('#cancel-edit-backlog-button').toggleClass('hidden');
 }
 
-function deleteFromBacklog(element = null) {
-    let toDelete = [];
+function deleteGames(element = null) {
+    let toDelete = {
+        backlog: [],
+        completed: []
+    };
 
     if(element) {
         let gameId = element.attr('id');
-        toDelete.push(gameId);
+        let category = element.parent()[0].classList[1];
+
+        toDelete[category].push(gameId); 
 
         $.ajax({
             url: '/backlog/remove-games',
@@ -131,7 +143,7 @@ function deleteFromBacklog(element = null) {
                 let response = JSON.parse(res);
                 let deleted = response.payload;
 
-                deleteElements(deleted, true);
+                deleteElements(deleted[category], true);
             },
             error: (jqXHR, status, err) => {}
          });
@@ -143,18 +155,24 @@ function deleteFromBacklog(element = null) {
         let checked = obj.childNodes[0].checked;
         if(checked) {
             let gameId = obj.childNodes[1].id;
-            toDelete.push(gameId);
+            let category = obj.classList[1];
+
+            toDelete[category].push(gameId);
         }
     });
 
     $.ajax({
        url: '/backlog/remove-games',
        type: 'POST',
-       data: { 'toDelete': toDelete },
+       data: { toDelete: toDelete },
        success: res => {
            let response = JSON.parse(res);
            let deleted = response.payload;
-           deleteElements(deleted, true);
+
+           for(let key in deleted) {
+               deleteElements(deleted[key], true);
+           }
+
            toggleBacklogEditing();
        },
        error: (jqXHR, status, err) => {}
@@ -169,6 +187,32 @@ function deleteElements(elements, deleteParent = false) {
         }
         $('#' + elements[i]).parent().remove();
     }
+}
+
+function moveGame(from, to, game) {
+    $.ajax({
+        url: '/backlog/move-games',
+        type: 'POST',
+        data: { 
+            from: from,
+            to: to,
+            game: game
+        },
+        success: res => {
+            let response = JSON.parse(res);
+            let data = response.payload;
+            
+            let from = data.from;
+            let to = data.to;
+            let gameId = data.game;
+
+            let gameElement = $(`#${gameId}`);
+            gameElement.parent().removeClass(`${from}`);
+            gameElement.parent().addClass(`${to}`);
+            gameElement.parent().appendTo($(`#${to}`));      
+        },
+        error: (jqXHR, status, err) => {}
+     });
 }
 
 function search(name) {

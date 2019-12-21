@@ -109,10 +109,10 @@ input[type="checkbox"]:checked:before {
     white-space: nowrap;
 }
 
-.tag {
+span.tag.added-tag {
     max-width: 250px;
-    background-color: #3c4047 !important;
-    color: #fff !important;
+    background-color: #212F3B;
+    color: #fff;
 }
 
 .modal-break {

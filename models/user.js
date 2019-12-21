@@ -12,6 +12,9 @@ const userSchema = new Schema({
     backlog: [
         {type: Number, ref: 'Game'}
     ],
+    completed: [
+        {type: Number, ref: 'Game'}
+    ],
     updated: { type: Date, default: Date.now }
 });
 

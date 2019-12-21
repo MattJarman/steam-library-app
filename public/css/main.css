@@ -69,6 +69,10 @@ a.navbar-item:focus-within, a.navbar-item:hover {
     color: #BABABA;
 }
 
+.navbar-item.has-dropdown.is-active .navbar-link {
+    background-color: transparent;
+}
+
 .navbar-dropdown a.navbar-item:focus, 
 .navbar-dropdown a.navbar-item:hover {
     background-color: transparent;

@@ -9,39 +9,46 @@ router.get('/', checkAuthenticated, async (req, res) => {
     }
     
     let user = new User(req.user._id);
-    let backlog = await user.getBacklog();
-
-    if(backlog) {
-        res.render('backlog', {
-           'backlog': backlog,
-           'user': req.user 
-        });
-
-        return;
-    }
+    let backlog = await user.getApps('backlog');
+    let completed = await user.getApps('completed');
 
     res.render('backlog', {
+        'backlog': backlog.payload,
+        'completed': completed.payload,
         'user': req.user 
-     });
+    });
 });
 
 router.post('/add-games', checkAuthenticated, async (req, res) => {
     let user = new User(req.user._id);
-    let inserted = await user.addGamesToBacklog(req.body.game);
+    let toInsert = [].concat(req.body.game || []);
+    let inserted = await user.addGamesToBacklog(toInsert);
 
     res.redirect('/backlog');
 });
 
 router.post('/remove-games', checkAuthenticated, async (req, res) => {
     let toDelete = req.body.toDelete;
+
     res.setHeader('content-type', 'text/javascript');
 
     if(toDelete) {
         let user = new User(req.user._id);
-        let response = await user.deleteGamesFromBacklog(toDelete);
+        let response = await user.deleteGames(toDelete);
 
         res.end(JSON.stringify(response));
     }
+});
+
+router.post('/move-games', checkAuthenticated, async (req, res) => {
+    let data = req.body
+
+    res.setHeader('content-type', 'text/javascript');
+
+    let user = new User(req.user._id);
+    let response = await user.moveGame(data);
+
+    res.end(JSON.stringify(response));
 });
 
 function checkAuthenticated(req, res, next) {

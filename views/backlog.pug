@@ -28,9 +28,9 @@ block content
                                         i(class='fas fa-trash-alt')
                                     span Delete
                     if backlog
-                        div(id='backlog-game-list' class='games')
+                        div(id='backlog' class='games')
                             each game in backlog
-                                div(class='column-container')
+                                div(class='column-container backlog')
                                     input(class='delete-checkbox hidden' autocomplete='off' type='checkbox')
                                     div(class='game-column' id=game._id)
                                         div(class='game-item')
@@ -52,10 +52,32 @@ block content
                                                                 a(class='delete-dropdown-item dropdown-item')
                                                                     i(class='far fa-trash-alt dropdown-icon')
                                                                     p Delete
-                nav(class='level')
-                    div(class='level-left')
-                        div(class='level-item has-text-centered')
-                                    h1(class='title') Completed
+                    nav(class='level')
+                        div(class='level-left')
+                            div(class='level-item has-text-centered')
+                                        h1(class='title') Completed
+                    if completed
+                        div(id='completed' class='games')
+                            each game in completed
+                                div(class='column-container completed')
+                                    input(class='delete-checkbox hidden' autocomplete='off' type='checkbox')
+                                    div(class='game-column' id=game._id)
+                                        div(class='game-item')
+                                            figure(class='media-left game-logo')
+                                                img(class='center' src=game.headerImage)
+                                            div(class='media-content')
+                                                div(class='game-top')
+                                                    p(class='game-name')=game.name
+                                                    div(class='dropdown is-right' id='more-options-button' haspopup='true' aria-controls='dropdown-menu')
+                                                        i(class='backlog-icon fas fa-ellipsis-h')
+                                                        div(class="dropdown-menu" id="dropdown-menu" role="menu")
+                                                            div(class="dropdown-content")
+                                                                a(class='edit-dropdown-item dropdown-item') 
+                                                                    i(class='far fa-edit dropdown-icon')
+                                                                    p Edit
+                                                                a(class='delete-dropdown-item dropdown-item')
+                                                                    i(class='far fa-trash-alt dropdown-icon')
+                                                                    p Delete
             div(id='add-game-modal' class='modal')
                 div(class='modal-background')
                 div(class='modal-card')

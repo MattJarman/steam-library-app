@@ -30,7 +30,7 @@ const STEAM_API_KEY = process.env.STEAM_API_KEY;
 mongoose.connect(MONGODB_URI, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
-    useFindAndModify: true
+    useFindAndModify: false
 });
 
 const db = mongoose.connection;
