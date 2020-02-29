@@ -10,10 +10,10 @@ const userSchema = new Schema({
     avatarMedium: String,
     avatarFull: String,
     backlog: [
-        {type: Number, ref: 'Game'}
+        { type: Number, ref: 'Game' }
     ],
     completed: [
-        {type: Number, ref: 'Game'}
+        { type: Number, ref: 'Game' }
     ],
     updated: { type: Date, default: Date.now }
 });

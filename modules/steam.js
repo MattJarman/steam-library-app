@@ -1,7 +1,4 @@
 const request = require('request');
-const User = require('../models/user');
-
-const STEAM_API_KEY = process.env.STEAM_API_KEY;
 const OWNED_GAMES_BASE_URL = 'https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=';
 
 class SteamAPI {
