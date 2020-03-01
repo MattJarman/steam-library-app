@@ -1,13 +1,12 @@
 const express = require('express');
-const path = require('path');
 const router = express.Router();
 const User = require('../modules/user');
 
 router.get('/', checkAuthenticated, async (req, res) => {
-    if(req.session) {
+    if (req.session) {
         req.session.redirect = req.originalUrl;
     }
-    
+
     let user = new User(req.user._id);
     let backlog = await user.getApps('backlog');
     let completed = await user.getApps('completed');
@@ -15,7 +14,7 @@ router.get('/', checkAuthenticated, async (req, res) => {
     res.render('backlog', {
         'backlog': backlog.payload,
         'completed': completed.payload,
-        'user': req.user 
+        'user': req.user
     });
 });
 
@@ -32,7 +31,7 @@ router.post('/remove-games', checkAuthenticated, async (req, res) => {
 
     res.setHeader('content-type', 'text/javascript');
 
-    if(toDelete) {
+    if (toDelete) {
         let user = new User(req.user._id);
         let response = await user.deleteGames(toDelete);
 
@@ -54,8 +53,9 @@ router.post('/move-games', checkAuthenticated, async (req, res) => {
 function checkAuthenticated(req, res, next) {
     if (req.isAuthenticated()) { return next(); }
 
-    if(req.session)
+    if (req.session) {
         req.session.redirect = req.originalUrl;
+    }
 
     res.render('backlog');
 }
