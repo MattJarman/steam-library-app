@@ -64,41 +64,27 @@ html
                 div(class='navbar-start')
                     a(class='navbar-item' href='/backlog')
                         div(class='nav-item-text')
-                            span(class='icon nav-icon')
-                                i(class='fas fa-list-ul')
                             span(class='nav-text') Backlog
                     a(class='navbar-item' href='/library')
                         div(class='nav-item-text')
-                            span(class='icon nav-icon')
-                                i(class='fas fa-book')
                             span(class='nav-text') Library
                     a(class='navbar-item' href='/profile')
                         div(class='nav-item-text')
-                            span(class='icon nav-icon')
-                                i(class='fas fa-user')
                             span(class='nav-text') Profile
                     div(class='navbar-item has-dropdown is-hoverable')
                         a(class='navbar-link') 
                             div(class='nav-item-text')
-                                span(class='icon nav-icon')
-                                    i(class='fas fa-ellipsis-h')
                                 span(class='nav-text') More
                         div(class='navbar-dropdown')   
                             a(class='navbar-item')
                                 div(class='nav-item-text')
-                                    span(class='icon nav-icon')
-                                        i(class='fas fa-info-circle')
                                     span(class='nav-text') About
                             a(class='navbar-item')
                                 div(class='nav-item-text')
-                                    span(class='icon nav-icon')
-                                        i(class='far fa-envelope')
                                     span(class='nav-text') Contact
                             hr(class='navbar-divider')
                             a(class='navbar-item') 
                                 div(class='nav-item-text')
-                                    span(class='icon nav-icon')
-                                        i(class='fas fa-exclamation-triangle')
                                     span(class='nav-text') Report an Issue
                 div(class='navbar-end')
                     if(user)
@@ -109,19 +95,13 @@ html
                             div(class='navbar-dropdown')   
                                 a(class='navbar-item')
                                     div(class='nav-item-text')
-                                        span(class='icon nav-icon')
-                                            i(class='fas fa-cog')
-                                        span Settings
+                                        span(class='nav-text') Settings
                                 hr(class='navbar-divider')
                                 a(class='navbar-item' href='/logout')
                                     div(class='nav-item-text')
-                                        span(class='icon nav-icon')
-                                            i(class='fas fa-sign-out-alt')
                                         span(class='nav-text') Sign Out
                     else
                         a(class='navbar-item' href='/auth/steam/return')
                             div(class='nav-item-text')
-                                span(class='icon nav-icon')
-                                    i(class='fas fa-sign-in-alt')
                                 span(class='nav-text') Sign In
         block content

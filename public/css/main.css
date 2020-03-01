@@ -47,7 +47,7 @@ button::-moz-focus-inner {
 .navbar-item,
 .navbar-link {
     color: #fff;
-    padding: 8px 24px;
+    padding: 8px 16px;
     outline: 0;
 }
 
@@ -121,7 +121,7 @@ a.navbar-item:hover {
 
 img.avatar {
     width: 32px;
-    margin-right: 24px;
+    margin-right: 8px;
     max-height: 32px;
 }
 
@@ -157,6 +157,10 @@ img.avatar {
         transform: none;
         pointer-events: auto;
     }
+    .nav-text {
+        font-size: 1.3rem;
+        margin-left: 16px;
+    }
     .navbar-dropdown {
         padding-top: 0;
     }
@@ -186,6 +190,14 @@ img.avatar {
         align-items: center;
         width: 32px;
     }
+    img.avatar {
+        width: 48px;
+        max-height: 48px;
+        margin-right: 16px;
+    }
+    .username {
+        font-size: 1.5rem;
+    }
     ul li.search-results-item {
         font-size: 12px;
         padding: 8px;
@@ -194,7 +206,7 @@ img.avatar {
         max-width: 200px;
     }
     .navbar-link.user-nav {
-        padding-top: .75em;
+        padding-top: 8px;
     }
     .delete-checkbox {
         margin-left: 8px;
