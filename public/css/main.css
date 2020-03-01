@@ -47,12 +47,12 @@ button::-moz-focus-inner {
 .navbar-item,
 .navbar-link {
     color: #fff;
-    padding: 16px 24px;
+    padding: 8px 24px;
     outline: 0;
 }
 
 .icon {
-    margin-right: 24px;
+    margin-right: 12px;
 }
 
 .nav-icon {
@@ -147,6 +147,12 @@ img.avatar {
         pointer-events: none;
         padding: 0;
     }
+    .navbar-item,
+    .navbar-link {
+        color: #fff;
+        padding: 8px;
+        outline: 0;
+    }
     .navbar-menu.is-active {
         transform: none;
         pointer-events: auto;
@@ -161,7 +167,7 @@ img.avatar {
         display: block;
     }
     .navbar-dropdown>a.navbar-item {
-        padding-left: 64px;
+        padding-left: 32px;
     }
     .navbar-menu.is-active,
     .ordered-mobile {

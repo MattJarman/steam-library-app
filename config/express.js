@@ -5,24 +5,24 @@ const connectMongo = require('connect-mongo')(session);
 const logger = require('morgan');
 const pug = require('pug');
 const path = require('path');
-require('dotenv').config();
+const config = require('./')
 
-const MONGODB_URI = process.env.MONGODB_URI;
+const MONGODB_URI = config.db;
 
 // Router Setup
-const backlog = require('../controllers/backlog.js');
-const library = require('../controllers/library.js');
-const profile = require('../controllers/profile.js');
-const auth = require('../controllers/auth.js');
-const api = require('../controllers/api.js');
+const backlog = require('../controllers/backlog');
+const library = require('../controllers/library');
+const profile = require('../controllers/profile');
+const auth = require('../controllers/auth');
+const api = require('../controllers/api');
 
-module.exports = function (app, passport) {
+module.exports = function(app, passport) {
     app.use(session({
         secret: 'GNJhqm2NZmmd3X5il50z2xc2SW3YagGi',
         name: 'session',
         resave: true,
         saveUninitialized: false,
-        store: new connectMongo({ url: MONGODB_URI, collection: 'sessions'}),
+        store: new connectMongo({ url: MONGODB_URI, collection: 'sessions' }),
         cookie: { maxAge: 120 * 60 * 1000 }
     }));
 
@@ -48,11 +48,11 @@ module.exports = function (app, passport) {
     app.use('/api', api);
     app.use(logger('dev'));
 
-    app.get('/', function (req, res) {
+    app.get('/', function(req, res) {
         res.redirect('backlog');
     });
 
-    app.get('/logout', function (req, res) {
+    app.get('/logout', function(req, res) {
         req.logout();
         res.redirect('/');
     });

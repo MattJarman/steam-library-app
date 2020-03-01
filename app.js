@@ -12,9 +12,10 @@ const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
 require('dotenv').config();
-
-const MONGODB_URI = process.env.MONGODB_URI;
-const PORT = process.env.PORT;
+const config = require('./config');
+const MONGODB_URI = config.db;
+const HOST = config.host;
+const PORT = config.port;
 
 const app = express();
 
@@ -23,7 +24,7 @@ require('./config/express')(app, passport);
 
 function listen() {
     app.listen(PORT, () => {
-        console.log(`Listening on port ${PORT}.`);
+        console.log(`Server running at http://${HOST}:${PORT}/`);
     });
 }
 

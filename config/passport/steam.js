@@ -1,16 +1,16 @@
 const SteamStrategy = require('passport-steam').Strategy;
 const User = require('../../models/user');
-require('dotenv').config();
-const STEAM_API_KEY = process.env.STEAM_API_KEY;
+const config = require('../');
+const STEAM_API_KEY = config.steam.key;
+const RETURN_URL = config.steam.returnURL;
+const REALM = config.steam.realm;
 
-module.exports = new SteamStrategy(
-    {
-        returnURL: 'http://localhost:8080/auth/steam/return',
-        realm: 'http://localhost:8080/',
+module.exports = new SteamStrategy({
+        returnURL: RETURN_URL,
+        realm: REALM,
         apiKey: STEAM_API_KEY
     },
     (identifier, profile, done) => {
-        // asynchronous verification, for effect...
         process.nextTick(() => {
             User.findOne({ steamid: profile.id })
                 .exec((err, user) => {
