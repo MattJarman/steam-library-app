@@ -11,22 +11,14 @@ block content
                         if user
                             div(class='level-right')
                             div(class='field is-grouped')
-                                button(id='add-game-button' class='button is-success')
-                                    span(class='icon is-small')
-                                        i(class='fas fa-plus')
-                                    span Add
-                                button(id='edit-backlog-button' class='button')
-                                    span(class='icon is-small')
-                                        i(class='fas fa-edit')
-                                    span Edit
-                                button(id='cancel-edit-backlog-button' class='button hidden')
-                                    span(class='icon is-small')
-                                        i(class='fas fa-ban')
-                                    span Cancel
-                                button(id='delete-backlog-button' class='button is-danger hidden')
-                                    span(class='icon is-small')
-                                        i(class='fas fa-trash-alt')
-                                    span Delete
+                                button(id='add-game-button' class='backlog-button button')
+                                    i(class='function-icon fas fa-plus')
+                                button(id='edit-backlog-button' class='backlog-button button')
+                                    i(class='function-icon fas fa-edit')
+                                button(id='cancel-edit-backlog-button' class='backlog-button button hidden')
+                                    i(class='function-icon fas fa-ban')
+                                button(id='delete-backlog-button' class='backlog-button button hidden')
+                                    i(class='function-icon fas fa-trash-alt')
                     if backlog
                         div(id='backlog' class='games')
                             each game in backlog

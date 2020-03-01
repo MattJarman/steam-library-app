@@ -1,6 +1,6 @@
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
-
-html, body {
+html,
+body {
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -10,16 +10,23 @@ html {
     background-attachment: fixed;
 }
 
-body, a {
+body,
+a {
     color: #fff;
 }
 
-h1.title, h2.title, h3.title {
+h1.title,
+h2.title,
+h3.title {
     color: #fff;
 }
 
 h1.subtitle {
     color: #fff;
+}
+
+button::-moz-focus-inner {
+    border: 0;
 }
 
 .center {
@@ -28,14 +35,17 @@ h1.subtitle {
     align-items: center;
 }
 
+
 /* Navbar */
+
 .nav {
     background: #161A24;
-    box-shadow: 0px 0px 30px rgba(0,0,0,0.2);
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
     height: 58px;
 }
 
-.navbar-item, .navbar-link {
+.navbar-item,
+.navbar-link {
     color: #fff;
     padding: 16px 24px;
     outline: 0;
@@ -61,10 +71,14 @@ h1.subtitle {
     padding-bottom: 0;
 }
 
-.navbar-link.is-active, .navbar-link:focus, 
-.navbar-link:focus-within, .navbar-link:hover, 
-a.navbar-item.is-active, a.navbar-item:focus, 
-a.navbar-item:focus-within, a.navbar-item:hover {
+.navbar-link.is-active,
+.navbar-link:focus,
+.navbar-link:focus-within,
+.navbar-link:hover,
+a.navbar-item.is-active,
+a.navbar-item:focus,
+a.navbar-item:focus-within,
+a.navbar-item:hover {
     background-color: transparent;
     color: #BABABA;
 }
@@ -73,7 +87,7 @@ a.navbar-item:focus-within, a.navbar-item:hover {
     background-color: transparent;
 }
 
-.navbar-dropdown a.navbar-item:focus, 
+.navbar-dropdown a.navbar-item:focus,
 .navbar-dropdown a.navbar-item:hover {
     background-color: transparent;
     color: #BABABA;
@@ -81,7 +95,7 @@ a.navbar-item:focus-within, a.navbar-item:hover {
 
 .navbar-dropdown {
     background-color: #161a24;
-    border-top: 2px solid rgba( 0, 0, 0, 0.1 );
+    border-top: 2px solid rgba( 0, 0, 0, 0.1);
 }
 
 .navbar-item.has-dropdown:hover .navbar-link {
@@ -93,7 +107,7 @@ a.navbar-item:focus-within, a.navbar-item:hover {
 }
 
 .navbar-divider {
-    background-color: rgba( 0, 0, 0, 0.1 );
+    background-color: rgba( 0, 0, 0, 0.1);
 }
 
 .nav-item-text {
@@ -119,83 +133,69 @@ img.avatar {
 @media screen and (max-width: 1023px) {
     #nav-menu {
         background: #161A24;
-        box-shadow: 3px 0px 15px rgba(0,0,0,0.2);
+        box-shadow: 3px 0px 15px rgba(0, 0, 0, 0.2);
     }
-
     .navbar-menu {
         width: 60%;
         height: 100%;
-    
         position: fixed;
         left: 0;
         right: 0;
         top: 0;
-    
         transform: translateX(-100%);
         transition: all .2s ease-in-out;
         pointer-events: none;
         padding: 0;
     }
-    
     .navbar-menu.is-active {
         transform: none;
         pointer-events: auto;
     }
-
     .navbar-dropdown {
         padding-top: 0;
     }
-
     .navbar-item.has-dropdown .navbar-dropdown {
         display: none;
-      }
-
+    }
     .navbar-item.has-dropdown.is-active .navbar-dropdown {
         display: block;
     }
-
-    .navbar-dropdown > a.navbar-item {
+    .navbar-dropdown>a.navbar-item {
         padding-left: 64px;
     }
-
-    .navbar-menu.is-active, .ordered-mobile {
+    .navbar-menu.is-active,
+    .ordered-mobile {
         display: flex;
         flex-flow: column;
     }
-
     .ordered-mobile .navbar-end {
         order: 1;
     }
-
     .ordered-mobile .navbar-start {
         order: 2;
     }
-
     .nav-icon {
         display: inline-flex;
         justify-content: center;
         align-items: center;
         width: 32px;
     }
-
     ul li.search-results-item {
         font-size: 12px;
         padding: 8px;
     }
-
     p.item-name {
         max-width: 200px;
     }
-
     .navbar-link.user-nav {
         padding-top: .75em;
     }
-
     .delete-checkbox {
         margin-left: 8px;
         margin-right: 8px;
     }
 }
+
 
 /* Game item styling */
 
@@ -265,7 +265,8 @@ p.game-name {
 }
 
 .info {
-    /* border-radius: 6px; */ /* Still undecided if I prefer rounded borders or not */
+    /* border-radius: 6px; */
+    /* Still undecided if I prefer rounded borders or not */
     width: 100%;
 }
 
@@ -277,13 +278,15 @@ p.game-name {
     top: 50px;
 }
 
-.select select, .sort-dropdown {
+.select select,
+.sort-dropdown {
     color: white;
     background-color: rgba(40, 40, 40, .35);
     border: 0px solid transparent;
 }
 
-.select select option, .sort-dropdown option {
+.select select option,
+.sort-dropdown option {
     color: black;
     background: white;
 }
@@ -292,7 +295,8 @@ p.game-name {
     color: #636363;
 }
 
-.select select, .sort-dropdown {
+.select select,
+.sort-dropdown {
     background: rgba( 87, 84, 84, .2);
 }
 
@@ -349,23 +353,49 @@ div.toast.show {
     animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
 
+
 /** Toast animations */
+
 @-webkit-keyframes fadein {
-    from {bottom: 0; opacity: 0;}
-    to {bottom: 32px; opacity: 1;}
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+    to {
+        bottom: 32px;
+        opacity: 1;
+    }
 }
 
 @keyframes fadein {
-    from {bottom: 0; opacity: 0;}
-    to {bottom: 32px; opacity: 1;}
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+    to {
+        bottom: 32px;
+        opacity: 1;
+    }
 }
 
 @-webkit-keyframes fadeout {
-    from {bottom: 32px; opacity: 1;}
-    to {bottom: 0; opacity: 0;}
+    from {
+        bottom: 32px;
+        opacity: 1;
+    }
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
 }
 
 @keyframes fadeout {
-    from {bottom: 24px; opacity: 1;}
-    to {bottom: 0; opacity: 0;}
+    from {
+        bottom: 24px;
+        opacity: 1;
+    }
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
 }
