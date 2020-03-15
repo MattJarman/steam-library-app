@@ -159,7 +159,7 @@ img.avatar {
     }
     .nav-text {
         font-size: 1.3rem;
-        margin-left: 16px;
+        margin-left: 8px;
     }
     .navbar-dropdown {
         padding-top: 0;
@@ -193,7 +193,7 @@ img.avatar {
     img.avatar {
         width: 48px;
         max-height: 48px;
-        margin-right: 16px;
+        margin-right: 8px;
     }
     .username {
         font-size: 1.5rem;
