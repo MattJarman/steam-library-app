@@ -1,4 +1,13 @@
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+:root {
+    --background: #212F3B;
+    --foreground: #FFFFFF;
+    --nav-background: #161A24;
+    --nav-item-hover: #BABABA;
+    --game-background: #161A24;
+    --border-background: rgba(0, 0, 0, 0.3);
+}
+
 html,
 body {
     font-family: 'Open Sans', sans-serif;
@@ -6,23 +15,21 @@ body {
 
 html {
     /* background: radial-gradient(ellipse farthest-corner at 50% 0%, #3c4047 0%, #3c4047 50%, #33363d 100%); */
-    background: #212F3B;
+    background: var(--background);
     background-attachment: fixed;
 }
 
 body,
 a {
-    color: #fff;
+    color: var(--foreground);
 }
 
-h1.title,
-h2.title,
-h3.title {
-    color: #fff;
+.title {
+    color: var(--foreground);
 }
 
-h1.subtitle {
-    color: #fff;
+.subtitle {
+    color: var(--foreground);
 }
 
 button::-moz-focus-inner {
@@ -39,9 +46,9 @@ button::-moz-focus-inner {
 /* Navbar */
 
 .nav {
-    background: #161A24;
+    background: var(--nav-background);
     box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
-    height: 58px;
+    height: 60px;
 }
 
 .navbar-item,
@@ -51,24 +58,8 @@ button::-moz-focus-inner {
     outline: 0;
 }
 
-.icon {
-    margin-right: 12px;
-}
-
-.nav-icon {
-    display: none;
-}
-
 .navbar-burger span {
-    background-color: white;
-}
-
-.navbar-burger:hover {
-    background-color: transparent;
-}
-
-.navbar-menu {
-    padding-bottom: 0;
+    background-color: var(--foreground);
 }
 
 .navbar-link.is-active,
@@ -94,7 +85,7 @@ a.navbar-item:hover {
 }
 
 .navbar-dropdown {
-    background-color: #161a24;
+    background-color: var(--nav-background);
     border-top: 2px solid rgba( 0, 0, 0, 0.1);
 }
 
@@ -110,13 +101,9 @@ a.navbar-item:hover {
     background-color: rgba( 0, 0, 0, 0.1);
 }
 
-.nav-item-text {
-    display: flex;
-    align-items: center;
-}
-
 .media-content {
     width: 0;
+    overflow-x: inherit;
 }
 
 img.avatar {
@@ -130,92 +117,8 @@ img.avatar {
     align-items: center;
 }
 
-@media screen and (max-width: 1023px) {
-    #nav-menu {
-        background: #161A24;
-        box-shadow: 3px 0px 15px rgba(0, 0, 0, 0.2);
-    }
-    .navbar-menu {
-        width: 60%;
-        height: 100%;
-        position: fixed;
-        left: 0;
-        right: 0;
-        top: 0;
-        transform: translateX(-100%);
-        transition: all .2s ease-in-out;
-        pointer-events: none;
-        padding: 0;
-    }
-    .navbar-item,
-    .navbar-link {
-        color: #fff;
-        padding: 8px;
-        outline: 0;
-    }
-    .navbar-menu.is-active {
-        transform: none;
-        pointer-events: auto;
-    }
-    .nav-text {
-        font-size: 1.3rem;
-        margin-left: 8px;
-    }
-    .navbar-dropdown {
-        padding-top: 0;
-    }
-    .navbar-item.has-dropdown .navbar-dropdown {
-        display: none;
-    }
-    .navbar-item.has-dropdown.is-active .navbar-dropdown {
-        display: block;
-    }
-    .navbar-dropdown>a.navbar-item {
-        padding-left: 32px;
-    }
-    .navbar-menu.is-active,
-    .ordered-mobile {
-        display: flex;
-        flex-flow: column;
-    }
-    .ordered-mobile .navbar-end {
-        order: 1;
-    }
-    .ordered-mobile .navbar-start {
-        order: 2;
-    }
-    .nav-icon {
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        width: 32px;
-    }
-    img.avatar {
-        width: 48px;
-        max-height: 48px;
-        margin-right: 8px;
-    }
-    .username {
-        font-size: 1.5rem;
-    }
-    ul li.search-results-item {
-        font-size: 12px;
-        padding: 8px;
-    }
-    p.item-name {
-        max-width: 200px;
-    }
-    .navbar-link.user-nav {
-        padding-top: 8px;
-    }
-    .delete-checkbox {
-        margin-left: 8px;
-        margin-right: 8px;
-    }
-}
 
-
-/* Game item styling */
+/* Game items */
 
 .games {
     width: 100%;
@@ -230,7 +133,7 @@ img.avatar {
 .game-logo {
     max-width: 35%;
     width: 184px;
-    margin-right: 16px;
+    margin-right: 8px;
     justify-content: center;
     align-items: center;
 }
@@ -262,10 +165,10 @@ img.avatar {
 
 .game-item {
     min-height: 69px;
-    border-radius: 8px;
+    border-radius: 4px;
     height: auto;
-    padding: 12px;
-    background: #161A24;
+    padding: 8px;
+    background: var(--game-background);
     /* box-shadow: 0px 0px 30px rgba(0,0,0,0.2); */
     box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.3);
     display: flex;
@@ -282,40 +185,12 @@ p.game-name {
     margin-bottom: 2px;
 }
 
-.info {
-    /* border-radius: 6px; */
-    /* Still undecided if I prefer rounded borders or not */
-    width: 100%;
-}
-
 .game-info {
     padding: 8px;
     height: auto;
     position: -webkit-sticky;
     position: sticky;
     top: 50px;
-}
-
-.select select,
-.sort-dropdown {
-    color: white;
-    background-color: rgba(40, 40, 40, .35);
-    border: 0px solid transparent;
-}
-
-.select select option,
-.sort-dropdown option {
-    color: black;
-    background: white;
-}
-
-.input::placeholder {
-    color: #636363;
-}
-
-.select select,
-.sort-dropdown {
-    background: rgba( 87, 84, 84, .2);
 }
 
 div.level-item {
@@ -339,6 +214,13 @@ a.dropdown-item {
 svg.dropdown-icon {
     margin-right: 12px;
 }
+
+div.dropdown-menu {
+    top: 70%;
+}
+
+
+/* Toast */
 
 div.toast-container {
     float: right;
@@ -369,6 +251,31 @@ div.toast.show {
     visibility: visible;
     -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
     animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+p.modal-card-title {
+    color: var(--foreground);
+}
+
+.modal-card-head,
+.modal-card-foot {
+    background-color: var(--game-background);
+}
+
+.modal-card-head {
+    border-bottom: 1px solid var(--border-background);
+}
+
+.modal-card-foot {
+    border-top: 1px solid var(--border-background);
+}
+
+.modal-card-body {
+    background-color: var(--game-background);
+}
+
+hr.modal-break {
+    background-color: var(--border-background);
 }
 
 
@@ -415,5 +322,85 @@ div.toast.show {
     to {
         bottom: 0;
         opacity: 0;
+    }
+}
+
+
+/* Mobile */
+
+@media screen and (max-width: 767px) {
+    /* Navbar */
+    #nav-menu {
+        background: var(--nav-background);
+        box-shadow: 3px 0px 15px rgba(0, 0, 0, 0.2);
+    }
+    .navbar-menu {
+        width: 60%;
+        height: 100%;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        transform: translateX(-100%);
+        transition: all .2s ease-in-out;
+        pointer-events: none;
+        padding: 0;
+    }
+    .navbar-menu.is-active {
+        transform: none;
+        pointer-events: auto;
+    }
+    .nav-text {
+        font-size: 1.3rem;
+        margin-left: 8px;
+    }
+    .navbar-dropdown {
+        padding-top: 0;
+    }
+    .navbar-item.has-dropdown .navbar-dropdown {
+        display: none;
+    }
+    .navbar-item.has-dropdown.is-active .navbar-dropdown {
+        display: block;
+    }
+    .navbar-dropdown>a.navbar-item {
+        padding-left: 32px;
+    }
+    .navbar-menu.is-active,
+    .ordered-mobile {
+        display: flex;
+        flex-flow: column;
+    }
+    .ordered-mobile .navbar-end {
+        order: 1;
+    }
+    .ordered-mobile .navbar-start {
+        order: 2;
+    }
+    img.avatar {
+        width: 48px;
+        max-height: 48px;
+        margin-right: 8px;
+    }
+    .username {
+        font-size: 1.5rem;
+    }
+    ul li.search-results-item {
+        font-size: 12px;
+        padding: 8px;
+    }
+    p.item-name {
+        max-width: 200px;
+    }
+    .navbar-link.user-nav {
+        padding-top: 8px;
+    }
+    .delete-checkbox {
+        margin-left: 8px;
+        margin-right: 8px;
+    }
+    /* Game items */
+    p.game-name {
+        font-size: 14px;
     }
 }

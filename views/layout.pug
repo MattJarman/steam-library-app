@@ -8,7 +8,7 @@ html
         link(rel='stylesheet' type="text/css" href="./css/main.css")
         link(rel='stylesheet' type="text/css" href="./css/library.css")
         link(rel='stylesheet' type="text/css" href="./css/backlog.css")
-        link(href="https://fonts.googleapis.com/css?family=Open+Sans:300,400&display=swap" rel="stylesheet") 
+        link(href="https://fonts.googleapis.com/css?family=Open+Sans:300,400&display=swap" rel="stylesheet")
         script(src='./js/jquery.min.js')
         script(defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js")
         script.
@@ -63,29 +63,22 @@ html
             div(id='nav-menu' class='navbar-menu ordered-mobile')
                 div(class='navbar-start')
                     a(class='navbar-item' href='/backlog')
-                        div(class='nav-item-text')
-                            span(class='nav-text') Backlog
+                        span(class='nav-text') Backlog
                     a(class='navbar-item' href='/library')
-                        div(class='nav-item-text')
-                            span(class='nav-text') Library
+                        span(class='nav-text') Library
                     a(class='navbar-item' href='/profile')
-                        div(class='nav-item-text')
-                            span(class='nav-text') Profile
+                        span(class='nav-text') Profile
                     div(class='navbar-item has-dropdown is-hoverable')
                         a(class='navbar-link') 
-                            div(class='nav-item-text')
-                                span(class='nav-text') More
+                            span(class='nav-text') More
                         div(class='navbar-dropdown')   
                             a(class='navbar-item')
-                                div(class='nav-item-text')
-                                    span(class='nav-text') About
+                                span(class='nav-text') About
                             a(class='navbar-item')
-                                div(class='nav-item-text')
-                                    span(class='nav-text') Contact
+                                span(class='nav-text') Contact
                             hr(class='navbar-divider')
                             a(class='navbar-item') 
-                                div(class='nav-item-text')
-                                    span(class='nav-text') Report an Issue
+                                span(class='nav-text') Report an Issue
                 div(class='navbar-end')
                     if(user)
                         div(class='navbar-item has-dropdown is-hoverable')
@@ -94,14 +87,11 @@ html
                                 p(class='username')=user.username
                             div(class='navbar-dropdown')   
                                 a(class='navbar-item')
-                                    div(class='nav-item-text')
-                                        span(class='nav-text') Settings
+                                    span(class='nav-text') Settings
                                 hr(class='navbar-divider')
                                 a(class='navbar-item' href='/logout')
-                                    div(class='nav-item-text')
-                                        span(class='nav-text') Sign Out
+                                    span(class='nav-text') Sign Out
                     else
                         a(class='navbar-item' href='/auth/steam/return')
-                            div(class='nav-item-text')
-                                span(class='nav-text') Sign In
+                            span(class='nav-text') Sign In
         block content

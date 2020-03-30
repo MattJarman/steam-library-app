@@ -1,5 +1,6 @@
 /**
  * TO DO:
+ * - Move views into public dir
  * - Create a backlog page
  * - Add achievement support
  * - Add howlongtobeat integration
@@ -40,6 +41,8 @@ function connect() {
     db.once('open', () => {
         console.log('Connected to database.');
         listen();
+    }).catch(error => {
+        console.error(error);
     });
 }
 

@@ -11,3 +11,7 @@
     border-radius: 4px;
     width: 8rem;
 }
+
+.input::placeholder {
+    color: #636363;
+}

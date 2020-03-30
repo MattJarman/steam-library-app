@@ -83,18 +83,14 @@ block content
                             p(class='modal-card-title') Add to Backlog
                         section(id='modal-search-section' class='modal-card-body')
                             input(id='game-search-input' class='input' type='text' placeholder='Search' autocomplete='off')
-                            ul(id='search-results')
+                            ul(id='search-results' class='search-results-list')
                         section(class='modal-card-body')
                             hr(class='modal-break')
-                            div(id='search-tags' class='tags is-paddingless')
+                            div(id='added-game-tags' class='tags is-paddingless added-game-tags')
                         footer(class='modal-card-foot')
                             button(id='add-game-submit' type='submit' value='submit' class='button is-success')
-                                span(class='icon is-small')
-                                    i(class='fas fa-check-circle')
-                                span Add to Backlog
+                                span Save changes
                             button(id='add-game-cancel' type='button' class='button is-danger')
-                                span(class='icon is-small')
-                                    i(class='fas fa-ban')
                                 span Cancel
                 button(class='modal-close is-large' aria-label='close')
     script(src='./js/backlog.js')
