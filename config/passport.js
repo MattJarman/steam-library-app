@@ -1,7 +1,7 @@
 const User = require('../models/user');
 const steam = require('./passport/steam');
 
-module.exports = function (passport) {
+module.exports = function(passport) {
     // Passport session setup.
     passport.serializeUser((user, done) => {
         done(null, user.id);

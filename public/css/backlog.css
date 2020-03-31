@@ -24,14 +24,14 @@ input[type='checkbox'] {
     border: 2px solid #bababa;
     box-sizing: border-box;
     position: relative;
-    box-sizing: content-box ;
+    box-sizing: content-box;
     width: 16px;
     height: 16px;
-    min-width: 8px;
-    cursor: pointer;   
+    min-width: 16px;
+    cursor: pointer;
     display: flex;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
     outline: 0;
 }
 
@@ -39,7 +39,7 @@ input[type='checkbox']:hover {
     border: 2px solid #fff;
 }
 
-input[type="checkbox"]:checked:before {
+input[type='checkbox']:checked:before {
     font-family: FontAwesome;
     color: #fff;
     content: '\f00c';
@@ -51,16 +51,11 @@ input[type="checkbox"]:checked:before {
     color: #fff;
 }
 
-#add-game-modal {
-    color: #363636;
-    padding: 2em;
-}
-
-#search-results {
-    border: 1px solid #e1e4e8;
-    box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+.search-results-list {
+    border: 1px solid var(--border-background);
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
     overflow: hidden;
-    max-height: 200px;
+    max-height: 205px;
     overflow-y: auto;
     display: none;
 }
@@ -69,24 +64,25 @@ input[type="checkbox"]:checked:before {
     min-height: 280px;
 }
 
-#search-results li {
+.search-results-list li {
     cursor: pointer;
-    border-bottom: 1px solid #e1e4e8;
+    border-bottom: 1px solid var(--border-background);
     padding: .25em .0 .25em .5em;
     color: #6a6a6a;
     font-size: 14px;
-    font-style: italic;
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
     padding-right: .5em;
+    color: var(--foreground);
 }
 
-#search-results li:hover {
+.search-results-list li:hover {
     color: #fff;
     background: #3c91e6;
 }
 
-#search-results li .fas, .fa-check {
+.search-results-list li .fas,
+.fa-check {
     height: inherit;
 }
 
@@ -98,7 +94,7 @@ input[type="checkbox"]:checked:before {
     padding-right: 1em;
 }
 
-#search-tags {
+.added-game-tags {
     height: 100px;
     display: block;
 }
@@ -119,15 +115,14 @@ span.tag.added-tag {
     margin-top: 0;
 }
 
-.backlog-icon {
-    width: 20px !important;
-    height: 20px !important;
-    color: #bababa;
+svg.backlog-icon {
+    font-size: 16px;
+    color: var(--icon-colour);
     cursor: pointer;
 }
 
 .backlog-icon:hover {
-    color: #fff;
+    color: var(--icon-hover);
 }
 
 input.delete-checkbox.hidden {
@@ -136,4 +131,21 @@ input.delete-checkbox.hidden {
 
 .button.hidden {
     display: none;
+}
+
+.backlog-button.button {
+    background-color: var(--button-background);
+    border: 0;
+    min-width: 32px;
+    height: 32px;
+    width: 32px;
+}
+
+.backlog-button.button:hover {
+    /* background-color: rgba(21, 25, 35, .6); */
+    background-color: var(--button-hover);
+}
+
+.function-icon {
+    color: #fff;
 }

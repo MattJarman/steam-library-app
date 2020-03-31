@@ -8,49 +8,10 @@ html
         link(rel='stylesheet' type="text/css" href="./css/main.css")
         link(rel='stylesheet' type="text/css" href="./css/library.css")
         link(rel='stylesheet' type="text/css" href="./css/backlog.css")
-        link(href="https://fonts.googleapis.com/css?family=Open+Sans:300,400&display=swap" rel="stylesheet") 
+        link(href="https://fonts.googleapis.com/css?family=Open+Sans:300,400&display=swap" rel="stylesheet")
         script(src='./js/jquery.min.js')
         script(defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js")
-        script.
-            $('html').addClass('hidden');
-            var burger;
-            $('document').ready(function() {
-                $('html').removeClass('hidden');
-
-                burger = document.querySelector('.burger');
-                nav = document.querySelector('#' + burger.dataset.target);
-                burger.addEventListener('click', function() {
-                    burger.classList.toggle('is-active');
-                    nav.classList.toggle('is-active');
-                });
-
-                nav.onclick = function(e) {
-                    e.stopPropagation();
-                }
-
-                burger.onclick = function(e) {
-                    e.stopPropagation();
-                }
-
-                document.onclick = function(e) {
-                    $('#nav-menu').removeClass('is-active');
-                    $('.burger').removeClass('is-active');
-                }
-
-                $('.navbar-link').on('click', function() {
-                    $(this.parentElement).toggleClass('is-active');
-                });
-
-                $('.dropdown').on('click', function(e) {
-                    e.stopPropagation();
-                    $(this).toggleClass('is-active');
-                });
-
-                $(document).on('click', function() {
-                    $('.dropdown').removeClass('is-active');
-                });
-            });
-
+        script(defer src="./js/main.js")
     body
         nav(id='navbar' class='navbar nav' role='navigation' aria-label='main navigation')
             div(class='navbar-brand')
@@ -63,43 +24,22 @@ html
             div(id='nav-menu' class='navbar-menu ordered-mobile')
                 div(class='navbar-start')
                     a(class='navbar-item' href='/backlog')
-                        div(class='nav-item-text')
-                            span(class='icon nav-icon')
-                                i(class='fas fa-list-ul')
-                            span(class='nav-text') Backlog
+                        span(class='nav-text') Backlog
                     a(class='navbar-item' href='/library')
-                        div(class='nav-item-text')
-                            span(class='icon nav-icon')
-                                i(class='fas fa-book')
-                            span(class='nav-text') Library
+                        span(class='nav-text') Library
                     a(class='navbar-item' href='/profile')
-                        div(class='nav-item-text')
-                            span(class='icon nav-icon')
-                                i(class='fas fa-user')
-                            span(class='nav-text') Profile
+                        span(class='nav-text') Profile
                     div(class='navbar-item has-dropdown is-hoverable')
                         a(class='navbar-link') 
-                            div(class='nav-item-text')
-                                span(class='icon nav-icon')
-                                    i(class='fas fa-ellipsis-h')
-                                span(class='nav-text') More
+                            span(class='nav-text') More
                         div(class='navbar-dropdown')   
                             a(class='navbar-item')
-                                div(class='nav-item-text')
-                                    span(class='icon nav-icon')
-                                        i(class='fas fa-info-circle')
-                                    span(class='nav-text') About
+                                span(class='nav-text') About
                             a(class='navbar-item')
-                                div(class='nav-item-text')
-                                    span(class='icon nav-icon')
-                                        i(class='far fa-envelope')
-                                    span(class='nav-text') Contact
+                                span(class='nav-text') Contact
                             hr(class='navbar-divider')
                             a(class='navbar-item') 
-                                div(class='nav-item-text')
-                                    span(class='icon nav-icon')
-                                        i(class='fas fa-exclamation-triangle')
-                                    span(class='nav-text') Report an Issue
+                                span(class='nav-text') Report an Issue
                 div(class='navbar-end')
                     if(user)
                         div(class='navbar-item has-dropdown is-hoverable')
@@ -108,20 +48,16 @@ html
                                 p(class='username')=user.username
                             div(class='navbar-dropdown')   
                                 a(class='navbar-item')
-                                    div(class='nav-item-text')
-                                        span(class='icon nav-icon')
-                                            i(class='fas fa-cog')
-                                        span Settings
+                                    span(class='nav-text') Settings
+                                a(class='navbar-item flex-centered')
+                                    span(class='nav-text') Dark Mode
+                                    label(class='switch flex-item-end')
+                                        input(type='checkbox' id='theme-switch')
+                                        span(class='slider')
                                 hr(class='navbar-divider')
                                 a(class='navbar-item' href='/logout')
-                                    div(class='nav-item-text')
-                                        span(class='icon nav-icon')
-                                            i(class='fas fa-sign-out-alt')
-                                        span(class='nav-text') Sign Out
+                                    span(class='nav-text') Sign Out
                     else
                         a(class='navbar-item' href='/auth/steam/return')
-                            div(class='nav-item-text')
-                                span(class='icon nav-icon')
-                                    i(class='fas fa-sign-in-alt')
-                                span(class='nav-text') Sign In
+                            span(class='nav-text') Sign In
         block content

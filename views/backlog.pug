@@ -11,22 +11,14 @@ block content
                         if user
                             div(class='level-right')
                             div(class='field is-grouped')
-                                button(id='add-game-button' class='button is-success')
-                                    span(class='icon is-small')
-                                        i(class='fas fa-plus')
-                                    span Add
-                                button(id='edit-backlog-button' class='button')
-                                    span(class='icon is-small')
-                                        i(class='fas fa-edit')
-                                    span Edit
-                                button(id='cancel-edit-backlog-button' class='button hidden')
-                                    span(class='icon is-small')
-                                        i(class='fas fa-ban')
-                                    span Cancel
-                                button(id='delete-backlog-button' class='button is-danger hidden')
-                                    span(class='icon is-small')
-                                        i(class='fas fa-trash-alt')
-                                    span Delete
+                                button(id='add-game-button' class='backlog-button button')
+                                    i(class='function-icon fas fa-plus')
+                                button(id='edit-backlog-button' class='backlog-button button')
+                                    i(class='function-icon fas fa-edit')
+                                button(id='cancel-edit-backlog-button' class='backlog-button button hidden')
+                                    i(class='function-icon fas fa-ban')
+                                button(id='delete-backlog-button' class='backlog-button button hidden')
+                                    i(class='function-icon fas fa-trash-alt')
                     if backlog
                         div(id='backlog' class='games')
                             each game in backlog
@@ -44,13 +36,16 @@ block content
                                                         div(class="dropdown-menu" id="dropdown-menu" role="menu")
                                                             div(class="dropdown-content")
                                                                 a(class='edit-dropdown-item dropdown-item') 
-                                                                    i(class='far fa-edit dropdown-icon')
+                                                                    div(class='dropdown-icon')
+                                                                        i(class='far fa-edit')
                                                                     p Edit
-                                                                a(class='mark-complete-dropdown-item dropdown-item') 
-                                                                    i(class='far fa-check-circle dropdown-icon')
+                                                                a(class='mark-complete-dropdown-item dropdown-item')
+                                                                    div(class='dropdown-icon')
+                                                                        i(class='far fa-check-circle dropdown-icon')
                                                                     p Mark As Completed
                                                                 a(class='delete-dropdown-item dropdown-item')
-                                                                    i(class='far fa-trash-alt dropdown-icon')
+                                                                    div(class='dropdown-icon')
+                                                                        i(class='far fa-trash-alt dropdown-icon')
                                                                     p Delete
                     nav(class='level')
                         div(class='level-left')
@@ -91,18 +86,14 @@ block content
                             p(class='modal-card-title') Add to Backlog
                         section(id='modal-search-section' class='modal-card-body')
                             input(id='game-search-input' class='input' type='text' placeholder='Search' autocomplete='off')
-                            ul(id='search-results')
+                            ul(id='search-results' class='search-results-list')
                         section(class='modal-card-body')
                             hr(class='modal-break')
-                            div(id='search-tags' class='tags is-paddingless')
+                            div(id='added-game-tags' class='tags is-paddingless added-game-tags')
                         footer(class='modal-card-foot')
                             button(id='add-game-submit' type='submit' value='submit' class='button is-success')
-                                span(class='icon is-small')
-                                    i(class='fas fa-check-circle')
-                                span Add to Backlog
+                                span Save changes
                             button(id='add-game-cancel' type='button' class='button is-danger')
-                                span(class='icon is-small')
-                                    i(class='fas fa-ban')
                                 span Cancel
                 button(class='modal-close is-large' aria-label='close')
     script(src='./js/backlog.js')
