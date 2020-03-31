@@ -27,7 +27,7 @@ input[type='checkbox'] {
     box-sizing: content-box;
     width: 16px;
     height: 16px;
-    min-width: 8px;
+    min-width: 16px;
     cursor: pointer;
     display: flex;
     justify-content: center;
@@ -39,7 +39,7 @@ input[type='checkbox']:hover {
     border: 2px solid #fff;
 }
 
-input[type="checkbox"]:checked:before {
+input[type='checkbox']:checked:before {
     font-family: FontAwesome;
     color: #fff;
     content: '\f00c';
@@ -117,12 +117,12 @@ span.tag.added-tag {
 
 svg.backlog-icon {
     font-size: 16px;
-    color: #bababa;
+    color: var(--icon-colour);
     cursor: pointer;
 }
 
 .backlog-icon:hover {
-    color: #fff;
+    color: var(--icon-hover);
 }
 
 input.delete-checkbox.hidden {
@@ -134,7 +134,7 @@ input.delete-checkbox.hidden {
 }
 
 .backlog-button.button {
-    background-color: rgba(21, 25, 35, .8);
+    background-color: var(--button-background);
     border: 0;
     min-width: 32px;
     height: 32px;
@@ -142,7 +142,8 @@ input.delete-checkbox.hidden {
 }
 
 .backlog-button.button:hover {
-    background-color: rgba(21, 25, 35, .6);
+    /* background-color: rgba(21, 25, 35, .6); */
+    background-color: var(--button-hover);
 }
 
 .function-icon {

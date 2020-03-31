@@ -1,22 +1,37 @@
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 :root {
+    --background: #F6F8FA;
+    --foreground: #000000;
+    --nav-background: #141115;
+    --game-border: 1px solid #d1d5da;
+    --game-background: #FFFFFF;
+    --border-background: #E1E4E8;
+    --button-background: var(--nav-background);
+    --button-hover: #29262a;
+    --icon-colour: var(--nav-background);
+    --icon-hover: #545154;
+}
+
+.dark {
     --background: #212F3B;
     --foreground: #FFFFFF;
     --nav-background: #161A24;
+    --game-border: 1px solid var(--game-background);
     --nav-item-hover: #BABABA;
     --game-background: #161A24;
     --border-background: rgba(0, 0, 0, 0.3);
+    --button-background: var(--nav-background);
+    --button-hover: rgba(21, 25, 35, .6);
+    --icon-colour: #BABABA;
+    --icon-hover: #FFF;
 }
 
 html,
 body {
     font-family: 'Open Sans', sans-serif;
-}
-
-html {
-    /* background: radial-gradient(ellipse farthest-corner at 50% 0%, #3c4047 0%, #3c4047 50%, #33363d 100%); */
     background: var(--background);
     background-attachment: fixed;
+    /* background: radial-gradient(ellipse farthest-corner at 50% 0%, #3c4047 0%, #3c4047 50%, #33363d 100%); */
 }
 
 body,
@@ -59,7 +74,7 @@ button::-moz-focus-inner {
 }
 
 .navbar-burger span {
-    background-color: var(--foreground);
+    background-color: #FFF;
 }
 
 .navbar-link.is-active,
@@ -169,14 +184,14 @@ img.avatar {
     height: auto;
     padding: 8px;
     background: var(--game-background);
-    /* box-shadow: 0px 0px 30px rgba(0,0,0,0.2); */
-    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.1);
+    border: var(--game-border);
     display: flex;
     overflow: visible;
 }
 
 p.game-name {
-    color: #fff;
+    color: var(--foreground);
     font-size: 18px;
     margin-bottom: 0;
     text-overflow: ellipsis;
@@ -211,12 +226,29 @@ a.dropdown-item {
     align-items: center;
 }
 
-svg.dropdown-icon {
-    margin-right: 12px;
+div.dropdown-icon {
+    width: 28px;
 }
 
 div.dropdown-menu {
     top: 70%;
+}
+
+.navbar-dropdown a.navbar-item {
+    padding-right: 16px;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-centered {
+    display: flex;
+    align-items: center;
+}
+
+.flex-item-end {
+    margin-left: auto;
 }
 
 
@@ -278,6 +310,10 @@ hr.modal-break {
     background-color: var(--border-background);
 }
 
+input[type='text'] {
+    border-radius: 0;
+}
+
 
 /** Toast animations */
 
@@ -328,14 +364,14 @@ hr.modal-break {
 
 /* Mobile */
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1023px) {
     /* Navbar */
     #nav-menu {
         background: var(--nav-background);
         box-shadow: 3px 0px 15px rgba(0, 0, 0, 0.2);
     }
     .navbar-menu {
-        width: 60%;
+        width: 250px;
         height: 100%;
         position: fixed;
         left: 0;
@@ -403,4 +439,60 @@ hr.modal-break {
     p.game-name {
         font-size: 14px;
     }
+}
+
+
+/* Switch */
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: #2196F3;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(20px);
+    -ms-transform: translateX(20px);
+    transform: translateX(20px);
 }
