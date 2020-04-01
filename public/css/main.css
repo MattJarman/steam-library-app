@@ -31,6 +31,7 @@ body {
     font-family: 'Open Sans', sans-serif;
     background: var(--background);
     background-attachment: fixed;
+    height: 100%;
     /* background: radial-gradient(ellipse farthest-corner at 50% 0%, #3c4047 0%, #3c4047 50%, #33363d 100%); */
 }
 
